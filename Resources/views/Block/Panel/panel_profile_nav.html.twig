@@ -1,0 +1,18 @@
+<aside class="profile-nav {{ item.color }}-border">
+	<section class="panel">
+		<div class="user-heading{% if item.headerAlign == 'horizontal' %} alt{% else %} round{% endif %} {{ item.color }}-bg"{% if item.cover %} style="background: url('{{ item.cover }}') center;-webkit-background-size: cover;background-size: cover;"{% endif %}>
+			{%  if item.photo %}
+			<a href="{{ item.link }}">
+				<img src="{{ item.photo | imagine_filter('thumbs') }}" alt="image"/>
+			</a>
+			{% endif %}
+			<h1>{{ item.title|raw }}</h1>
+			<p>{{ item.description }}</p>
+		</div>
+		<ul>
+		{% for block in item.blocks %}
+			<li>{{ render_block(block) }}</li>
+		{% endfor %}
+		</ul>
+	</section>
+</aside>

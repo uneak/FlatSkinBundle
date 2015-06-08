@@ -1,0 +1,3 @@
+<div {% if item.color %}class="progress-bar" style="width: {{ item.complete }}%;background-color: {{ item.color }};"{% else %}class="progress-bar progress-bar-{{ item.context }}" style="width: {{ item.complete }}%"{% endif %}>
+	<span class="sr-only">{{ item.title }} {{ item.complete }}% Complete</span>
+</div>

@@ -1,0 +1,14 @@
+<li class="dropdown">
+	<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+		{%  if item.photo %}<img src="{{ item.photo | imagine_filter('avatar') }}" alt="image"/>{% endif %}
+		<span class="username">{{ item.username }}</span>
+		<b class="caret"></b>
+	</a>
+	<ul class="dropdown-menu extended user-dropdown-menu">
+		<li class="log-arrow-up first"><span></span></li>
+		{% for block in item.blocks %}
+			<li>{{ render_block(block) }}</li>
+		{% endfor %}
+	</ul>
+
+</li>

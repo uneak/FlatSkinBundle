@@ -1,0 +1,18 @@
+{% set cmpt = 0 %}
+{% for block in item.blocks %}
+	{% if loop.first or loop.index0 is divisibleby(item.columns) %}
+		<div class="row{% if item.stripeRow %}{% if cmpt is odd %} odd{% else %} even{% endif %}{% endif %}">
+		{% set cmpt = cmpt + 1 %}
+	{% endif %}
+
+	<div class="col-md-{{ 12 / item.columns }}{% if item.columns > 1 %} multi-column{% endif %}">{{ render_block(block) }}</div>
+
+	{% if loop.last and loop.index is not divisibleby(item.columns) %}
+		{% for n in range(low=item.columns - (loop.index % item.columns), high=1, step=-1) %}
+			<div class="col-md-{{ 12 / item.columns }}">&nbsp;</div>
+		{% endfor %}
+	{% endif %}
+	{% if loop.last or loop.index is divisibleby(item.columns) %}
+		</div>
+	{% endif %}
+{% endfor %}

@@ -1,0 +1,37 @@
+{% extends 'UneakFlatSkinBundle::base_admin.html.twig' %}
+
+{% block title %}Administration - {{ parent() }}{% endblock %}
+
+{% block content %}
+
+	<section id="container" class="">
+		{% include '@UneakFlatSkin/Manager/header.html.twig' %}
+		{% include '@UneakFlatSkin/Manager/left_sidebar.html.twig' %}
+
+		<section id="main-content">
+			<section class="wrapper site-min-height">
+				{% block content_page %}{% endblock %}
+			</section>
+		</section>
+
+		{% include '@UneakFlatSkin/Manager/right_sidebar.html.twig' %}
+		{% include '@UneakFlatSkin/Manager/footer.html.twig' %}
+	</section>
+
+{% endblock %}
+
+
+{% block stylesheets_page %}
+	{{ parent() }}
+	{{ externalAssets('ExternalCss') }}
+{% endblock %}
+
+{% block javascripts_bottom_page %}
+	{{ parent() }}
+	{{ externalAssets('ExternalJs') }}
+{% endblock %}
+
+{% block javascript_script %}
+	{{ parent() }}
+	{{ scriptAssets('ScriptJs') }}
+{% endblock %}

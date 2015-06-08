@@ -1,0 +1,9 @@
+<section class="state-overview panel">
+	<div {% if item.color %}class="symbol" style="background: {{ item.color }};"{% else %}class="symbol {{ item.context }}{% endif %}">
+        {{ icon(item.icon) }}
+    </div>
+    <div class="value">
+        <h1 class="count">{{ item.count }}</h1>
+        <p>{{ item.title|raw }}</p>
+    </div>
+</section>

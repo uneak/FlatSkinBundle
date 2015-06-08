@@ -1,0 +1,20 @@
+<article class="timeline-item{% if index is odd %} alt{% endif %}">
+	<div class="timeline-desk">
+		<div class="panel">
+			<div class="panel-body">
+				<span class="arrow{% if index is odd %}-alt{% endif %}"></span>
+				<span {% if item.color %}class="timeline-icon" style="background: {{ item.color }}; box-shadow: 0 0 0 3px {{ item.color }};"{% else %}class="timeline-icon {{ item.context }}"{% endif %}></span>
+
+				<span class="timeline-date">{{ item.date }}</span>
+
+				<h1 {% if item.color %}style="color: {{ item.color }};"{% else %}class="{{ item.context }}"{% endif %}>{{ item.title|raw }}</h1>
+
+				<p>{{ item.description }}</p>
+				{% for block in item.blocks %}
+					{{ render_block(block) }}
+					{#{% include block.template with { 'item': block, 'index': loop.index } %}#}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</article>

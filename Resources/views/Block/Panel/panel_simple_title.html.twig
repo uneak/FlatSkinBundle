@@ -1,0 +1,12 @@
+<section class="panel">
+	<div class="panel-body">
+		<div class="chart">
+			{% for block in item.blocks %}
+				{{ render_block(block) }}
+			{% endfor %}
+		</div>
+	</div>
+	<footer class="pie-foot">
+		{{ item.title|raw }}
+	</footer>
+</section>

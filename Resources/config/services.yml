@@ -1,0 +1,4 @@
+services:
+#    uneak_flat_skin.example:
+#        class: Uneak\FlatSkinBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

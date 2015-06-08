@@ -1,0 +1,13 @@
+<li>
+	<a href="#">
+		<div class="task-info">
+			<div class="desc">{{ item.title|raw }}</div>
+			<div class="percent">{{ item.complete }}%</div>
+		</div>
+		<div class="progress progress-striped"{% if item.backgroundColor %} style="background-color: {{ item.backgroundColor }};"{% endif %}>
+			<div {% if item.color %}class="progress-bar" style="width: {{ item.complete }}%;background-color: {{ item.color }};"{% else %}class="progress-bar progress-bar-{{ item.context }}" style="width: {{ item.complete }}%"{% endif %} role="progressbar" aria-valuenow="{{ item.complete }}" aria-valuemin="0" aria-valuemax="100">
+				<span class="sr-only">{{ item.complete }}% Complete</span>
+			</div>
+		</div>
+	</a>
+</li>

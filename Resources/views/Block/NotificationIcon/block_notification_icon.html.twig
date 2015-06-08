@@ -1,0 +1,15 @@
+<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+    {{ icon(item.icon) }}
+    <span class="badge bg-success">{{ item.badge }}</span>
+</a>
+<ul class="{{ item.metas.class }}">
+    <div class="notify-arrow notify-arrow-green"></div>
+    <li>
+        <p class="green">{{ item.title|raw }}</p>
+    </li>
+    {% for block in item.content.blocks %}
+        <li>
+			{{ render_block(block) }}
+        </li>
+    {% endfor %}
+</ul>

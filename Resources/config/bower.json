@@ -1,0 +1,6 @@
+{
+	"name": "FlatSkinBundle",
+	"dependencies": {
+		"bootstrap-datepicker": "latest"
+	}
+}

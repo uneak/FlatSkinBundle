@@ -1,0 +1,9 @@
+{% extends 'UneakFlatSkinBundle:Block:block.html.twig' %}
+
+{% block content %}
+    <ul>
+        {% for block in item.content.blocks %}
+            <li>{{ render_block(block) }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

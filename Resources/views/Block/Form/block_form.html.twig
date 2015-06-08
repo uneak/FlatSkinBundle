@@ -1,0 +1,5 @@
+{% form_theme item.form with ['UneakFlatSkinBundle:Block/Form:fields.html.twig'] %}
+
+{{ form_start(item.form, { 'style': 'horizontal', 'label_col': 3, 'widget_col': 9, 'attr': {'class': 'tasi-form'} }) }}
+{{ form_errors(item.form) }}
+{{ form_end(item.form) }}

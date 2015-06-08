@@ -1,0 +1,15 @@
+parameters:
+    uneak.flatskin.type.gender.class: Uneak\FlatSkinBundle\Form\GenderType
+    uneak.flatskin.type.date_picker.class: Uneak\FlatSkinBundle\Form\DatePickerType
+
+services:
+
+    uneak.flatskin.type.gender:
+        class: %uneak.flatskin.type.gender.class%
+        tags:
+            - { name: form.type, alias: gender }
+
+    uneak.flatskin.type.date_picker:
+        class: %uneak.flatskin.type.date_picker.class%
+        tags:
+            - { name: form.type, alias: date_picker }

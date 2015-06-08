@@ -1,0 +1,9 @@
+<div class="sidebar-widget {{ item.metas.class }}">
+    <div class="widget-header">
+        <h6>{{ item.title|raw }}</h6>
+        {% if item.collapsible %}<div class="widget-toggle">+</div>{% endif %}
+    </div>
+    <div class="widget-content">
+        {% block content %}{% endblock %}
+    </div>
+</div>

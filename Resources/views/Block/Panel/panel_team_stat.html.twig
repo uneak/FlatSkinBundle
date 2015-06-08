@@ -1,0 +1,44 @@
+<section class="panel post-wrap pro-box">
+	<aside>
+		<div class="post-info">
+			<span class="arrow-pro right"></span>
+
+			<div class="panel-body">
+				<h1><strong>{{ item.title | raw }}</strong> <br>{{ item.subTitle | raw }}</h1>
+
+				<div class="desk yellow row" style="width:100%">
+
+					{% for block in item.blocks %}
+						<div class="col-md-{{ 12 / item.blocks|length }}">
+							{{ render_block(block) }}
+						</div>
+					{% endfor %}
+
+					{#<div class="col-md-5">#}
+						{#{{ render_block(item.blocks.0) }}#}
+					{#</div>#}
+					{#<div class="col-md-7">#}
+						{#{% if item.blocks|length > 1 %}#}
+							{#{% for i in 1..item.blocks|length -1 %}#}
+								{#{{ render_block(item.blocks[i]) }}#}
+							{#{% endfor %}#}
+						{#{% endif %}#}
+					{#</div>#}
+
+				</div>
+				<div class="row" style="width:100%">
+					<div class="col-md-12">
+						{{ render_block(item.menu) }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</aside>
+	{#<aside class="post-highlight v-align">#}
+		{#<div class="panel-body text-center">#}
+			{#<div class="pro-thumb">#}
+				{#{%  if item.photo %}<img src="{{ item.photo | imagine_filter('cover_avatar') }}" alt="image"/>{% endif %}#}
+			{#</div>#}
+		{#</div>#}
+	{#</aside>#}
+</section>

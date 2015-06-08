@@ -1,0 +1,6 @@
+{#<h5 class="side-title">{{ item.title|raw }}</h5>#}
+<ul class="">
+	{% for block in item.blocks %}
+		{{ render_block(block) }}
+	{% endfor %}
+</ul>

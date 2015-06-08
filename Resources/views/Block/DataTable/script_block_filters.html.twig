@@ -1,0 +1,17 @@
+<script type="text/javascript">
+
+	$(document).ready(function () {
+
+		var gridApi = $("#{{ item.dataTable.uniqid }}").DataTable();
+
+		$('#{{ item.dataTable.uniqid }}_filters a.grid-col-vis').on('click', function (e) {
+			e.preventDefault();
+			var column = gridApi.column($(this).data('column'));
+			column.visible(!column.visible());
+		});
+		$('#{{ item.dataTable.uniqid }}_filters .grid-col-search').keyup(function () {
+			gridApi.column($(this).data('column')).search($(this).val()).draw();
+		});
+	});
+
+</script>

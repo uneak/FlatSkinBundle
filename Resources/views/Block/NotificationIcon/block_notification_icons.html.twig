@@ -1,0 +1,10 @@
+<div class="nav notify-row" id="top_menu">
+    <!--  notification start -->
+    <ul class="nav top-menu">
+    {% for block in item.blocks %}
+        <li class="dropdown">
+			{{ render_block(block) }}
+        </li>
+    {% endfor %}
+    </ul>
+</div>

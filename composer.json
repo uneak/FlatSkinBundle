@@ -1,0 +1,29 @@
+{
+    "name": "uneak/flatskin-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony FlatSkinBundle",
+    "keywords": ["admin", "backoffice", "form", "block", "skin"],
+    "homepage": "https://github.com/uneak/FlatSkinBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marc Galoyer",
+            "email": "mgaloyer@uneak.fr",
+            "homepage": "http://www.uneak.fr"
+        }
+    ],
+    
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": "~2.1",
+        "twig/twig": "~1.5"
+    },
+    "require-dev": {
+        "symfony/yaml": "~2.1"
+    },
+    "autoload": {
+        "psr-0": { "Uneak\\FlatSkinBundle": "" }
+    },
+    "target-dir": "Uneak/FlatSkinBundle",
+    "minimum-stability": "dev"
+}

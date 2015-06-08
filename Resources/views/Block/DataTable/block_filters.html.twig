@@ -1,0 +1,17 @@
+<div id="{{ item.dataTable.uniqid }}_filters">
+	{% for column in item.dataTable.columns %}
+		<div class="form-group">
+			<label class="col-md-3 control-label">
+				<a href="#" class="grid-col-vis"
+				   data-column="{{ loop.index - 1 }}">{{ column.title }}</a>
+			</label>
+
+			<div class="col-md-9">
+				<div class="input-group input-search">
+					<input type="text" class="form-control grid-col-search" data-column="{{ loop.index - 1 }}"
+						   placeholder="Rechercher...">
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+</div>

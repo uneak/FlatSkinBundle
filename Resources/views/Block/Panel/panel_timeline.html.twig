@@ -1,0 +1,16 @@
+<section class="panel">
+	<div class="panel-body">
+		<div class="text-center mbot30">
+			<h3 class="timeline-title">{{ item.title|raw }}</h3>
+			<p class="t-info">{{ item.description }}</p>
+		</div>
+
+		<div class="timeline">
+			{% for block in item.blocks %}
+				{{ render_block(block, null, { 'index': loop.index }) }}
+			{% endfor %}
+		</div>
+
+		<div class="clearfix">&nbsp;</div>
+	</div>
+</section>

@@ -1,0 +1,64 @@
+{% extends '::base.html.twig' %}
+
+{% block html_tag %}
+<html lang="fr">{% endblock %}
+
+	{% block title %}Administration - {{ parent() }}{% endblock %}
+	{% block icon %}{{ asset('/bundles/uneakflatskin/images/favicon.ico') }}{% endblock %}
+
+	{% block meta_viewport %}width=device-width, initial-scale=1.0{% endblock %}
+	{% block meta_keywords %}{% endblock %}
+	{% block meta_description %}{% endblock %}
+	{% block meta_author %}uneak{% endblock %}
+
+	{% block content %}{% endblock %}
+
+	{% block stylesheets %}
+
+		<!-- Bootstrap core CSS -->
+		<link href="/bundles/uneakflatskin/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/bundles/uneakflatskin/css/bootstrap-reset.css" rel="stylesheet">
+		<!--external css-->
+		<link href="/bundles/uneakflatskin/assets/font-awesome/css/font-awesome.css" rel="stylesheet"/>
+
+		{% block stylesheets_page %}{% endblock %}
+
+		<!--right slidebar-->
+		<link href="/bundles/uneakflatskin/css/slidebars.css" rel="stylesheet">
+
+		<!-- Custom styles for this template -->
+		<link href="/bundles/uneakflatskin/css/style.css" rel="stylesheet">
+		<link href="/bundles/uneakflatskin/css/style-responsive.css" rel="stylesheet"/>
+
+	{% endblock %}
+
+	{% block javascripts_top %}
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+		<!--[if lt IE 9]>
+		<script src="/bundles/uneakflatskin/js/html5shiv.js"></script>
+		<script src="/bundles/uneakflatskin/js/respond.min.js"></script>
+		<![endif]-->
+
+	{% endblock %}
+
+	{% block javascripts_bottom %}
+
+		<!-- js placed at the end of the document so the pages load faster -->
+		<script src="/bundles/uneakflatskin/js/jquery.js"></script>
+		<script src="/bundles/uneakflatskin/js/bootstrap.min.js"></script>
+		<script src="/bundles/uneakflatskin/js/jquery.dcjqaccordion.2.7.js" class="include"
+				type="text/javascript"></script>
+		<script src="/bundles/uneakflatskin/js/jquery.scrollTo.min.js"></script>
+		<script src="/bundles/uneakflatskin/js/slidebars.min.js"></script>
+		<script src="/bundles/uneakflatskin/js/jquery.nicescroll.js" type="text/javascript"></script>
+		<script src="/bundles/uneakflatskin/js/respond.min.js"></script>
+
+		<!--common script for all pages-->
+		<script src="/bundles/uneakflatskin/js/common-scripts.js"></script>
+
+		{% block javascripts_bottom_page %}{% endblock %}
+
+	{% endblock %}
+
+	{% block javascript_script %}{% endblock %}

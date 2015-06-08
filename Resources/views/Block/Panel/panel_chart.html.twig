@@ -1,0 +1,17 @@
+<div class="panel {{ item.color }}-chart">
+	<div class="panel-body chart-texture">
+		<div class="chart">
+			<div class="heading">
+				<span>{{ item.title|raw }}</span>
+				<strong>{{ item.description }}</strong>
+			</div>
+			{% for block in item.blocks %}
+				{{ render_block(block) }}
+			{% endfor %}
+		</div>
+	</div>
+	<div class="chart-tittle">
+		<span class="title">{{ item.titleValue }}</span>
+		<span class="value">{{ item.value }}</span>
+	</div>
+</div>

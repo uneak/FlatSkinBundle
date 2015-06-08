@@ -1,0 +1,17 @@
+<section class="panel {{ item.styles }}">
+	<header class="panel-heading">
+		{{ item.title|raw }}
+		{% if item.collapsable %}
+			<span class="tools pull-right">
+				<a href="javascript:;" class="fa fa-chevron-down"></a>
+				<a href="javascript:;" class="fa fa-times"></a>
+			</span>
+		{% endif %}
+	</header>
+	<div class="panel-body">
+		{% for block in item.blocks %}
+			{{ render_block(block) }}
+			{#{% include block.template with { 'item': block, 'index': loop.index } %}#}
+		{% endfor %}
+	</div>
+</section>
