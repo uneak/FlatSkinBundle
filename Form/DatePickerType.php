@@ -19,150 +19,121 @@
 
 	class DatePickerType extends AssetsAbstractType {
 
-		private static $malotFormater = array("yyyy", "yyyy", "ss", "ii", "hh", "HH", "dd", "mm", "MM",   "yy", "p", "P", "s", "i", "h", "H", "d", "m", "M");
-		private static $intlFormater  = array("y", "yyyy", "ss", "mm", "HH", "hh", "dd", "MM", "MMMM", "yy", "a", "a", "s", "m", "H", "h", "d", "M", "MMM");
+		private $_formatConvertRules = array(
+			// year
+			'yyyy'  => 'YYYY', 'yy' => 'YY', 'y' => 'YYYY',
+			// month
+			// 'MMMM'=>'MMMM', 'MMM'=>'MMM', 'MM'=>'MM',
+			// day
+			'dd'    => 'DD', 'd' => 'D',
+			// hour
+			// 'HH'=>'HH', 'H'=>'H', 'h'=>'h', 'hh'=>'hh',
+			// am/pm
+			// 'a' => 'a',
+			// minute
+			// 'mm'=>'mm', 'm'=>'m',
+			// second
+			// 'ss'=>'ss', 's'=>'s',
+			// day of week
+			'EE'    => 'ddd', 'EEEEEE' => 'dd',
+			// timezone
+			'ZZZZZ' => 'Z', 'ZZZ' => 'ZZ',
+			// letter 'T'
+			'\'T\'' => 'T',
+		);
 
-		private static $defaultFormat = "dd/mm/yyyy HH:ii";
+
+		private static $defaultFormat = "dd/MM/yyyy HH:mm";
 
 
 		public function buildView(FormView $view, FormInterface $form, array $options) {
 
-			$pickerOptions = $options['options'];
-
-			if (!isset($pickerOptions['language'])) {
-				$pickerOptions['language'] = \Locale::getDefault();
-			}
-
-			if(!isset($pickerOptions['format'])) {
-				$pickerOptions['format'] = self::$defaultFormat;
-			}
-
-			if ($pickerOptions['formatter'] == 'php'){
-				$pickerOptions['format'] = self::convertIntlFormaterToMalot( $pickerOptions['format'] );
-			}
+			$options['options']["format"] = strtr($options['format'], $this->_formatConvertRules);
 
 
-//			if ($options['html5'] && self::HTML5_FORMAT === $options['format']) {
-//				$view->vars['type'] = 'datetime';
-//			}
+			//			if (!isset($pickerOptions['language'])) {
+			//				$pickerOptions['language'] = \Locale::getDefault();
+			//			}
 
-			$view->vars['markup'] = $options['markup'];
+			//			if(!isset($options['format'])) {
+			//				$options['format'] = self::$defaultFormat;
+			//			}
+			//
+			//			if ($options['formatter'] == 'php'){
+			//				$options['format'] = self::convertIntlFormaterToMalot( $options['format'] );
+			//			}
+
+
+			//			if ($options['html5'] && self::HTML5_FORMAT === $options['format']) {
+			//				$view->vars['type'] = 'datetime';
+			//			}
+
+			//			$view->vars['markup'] = $options['markup'];
 			$view->vars['widget'] = "single_text";
-			$view->vars['options'] = $pickerOptions;
+			$view->vars['options'] = $options['options'];
 		}
 
 
 		public function setDefaultOptions(OptionsResolverInterface $resolver) {
 
-			$resolver->setRequired(array('markup'));
-			$resolver->setAllowedValues('markup', array('input', 'component', 'date-range', 'embedded'));
+			//			$resolver->setRequired(array('markup'));
+			//			$resolver->setAllowedValues('markup', array('input', 'component', 'date-range', 'embedded'));
 
 			$resolver->setDefaults(array(
-				'widget' => 'single_text',
-				'markup'         => 'input',
-				'format' => function (Options $options, $value) {
-					$pickerOptions = $options['options'];
-					if ($pickerOptions['formatter'] == 'php'){
-						if (isset($pickerOptions['format'])){
-							return $pickerOptions['format'];
-						} else {
-							return self::$defaultFormat;
-						}
-					} elseif ($pickerOptions['formatter'] == 'js'){
-						if (isset($pickerOptions['format'])){
-							return self::convertMalotToIntlFormater( $pickerOptions['format'] );
-						} else {
-							return self::convertMalotToIntlFormater( self::$defaultFormat );
-						}
-					}
-				},
-				'options'        => array(),
-
+				'widget'  => 'single_text',
+				'format'  => self::$defaultFormat,
+				'options' => array(),
 			));
 
 			$resolver->setDefined(
 				array(
-					'markup',
+					//					'markup',
+					//					'format',
+					//					'formatter',
 					'options',
-					//					'options' => array(
-					//						'autoclose',
-					//						'beforeShowDay',
-					//						'beforeShowMonth',
-					//						'calendarWeeks',
-					//						'clearBtn',
-					//						'toggleActive',
-					//						'container',
-					//						'daysOfWeekDisabled',
-					//						'daysOfWeekHighlighted',
-					//						'datesDisabled',
-					//						'defaultViewDate',
-					//						'endDate',
-					//						'forceParse',
-					//						'format',
-					//						'inputs',
-					//						'keyboardNavigation',
-					//						'language',
-					//						'minViewMode',
-					//						'maxViewMode',
-					//						'multidate',
-					//						'multidateSeparator',
-					//						'orientation',
-					//						'startDate',
-					//						'startView',
-					//						'todayBtn',
-					//						'todayHighlight',
-					//						'weekStart',
-					//						'showOnFocus',
-					//						'disableTouchKeyboard',
-					//						'enableOnReadonly',
-					//						'immediateUpdates',
-					//					),
 				)
 			);
 
 		}
 
 
-
 		/**
 		 * Convert the PHP date format to Bootstrap Datetimepicker date format
 		 */
-		public static function convertIntlFormaterToMalot($formatter)
-		{
+		public static function convertIntlFormaterToMalot($formatter) {
 			$intlToMalot = array_combine(self::$intlFormater, self::$malotFormater);
 			$patterns = preg_split('([\\\/.:_;,\s-\ ]{1})', $formatter);
 			$exits = array();
 			foreach ($patterns as $val) {
-				if (isset($intlToMalot[$val])){
+				if (isset($intlToMalot[$val])) {
 					$exits[$val] = $intlToMalot[$val];
 				} else {
 					// it can throw an Exception
 					$exits[$val] = $val;
 				}
 			}
+
 			return str_replace(array_keys($exits), array_values($exits), $formatter);
 		}
+
 		/**
 		 * Convert the Bootstrap Datetimepicker date format to PHP date format
 		 */
-		public static function convertMalotToIntlFormater($formatter)
-		{
+		public static function convertMalotToIntlFormater($formatter) {
 			$malotToIntl = array_combine(self::$malotFormater, self::$intlFormater);
 			$patterns = preg_split('([\\\/.:_;,\s-\ ]{1})', $formatter);
 			$exits = array();
 			foreach ($patterns as $val) {
-				if (isset($malotToIntl[$val])){
+				if (isset($malotToIntl[$val])) {
 					$exits[$val] = $malotToIntl[$val];
 				} else {
 					// it can throw an Exception
 					$exits[$val] = $val;
 				}
 			}
+
 			return str_replace(array_keys($exits), array_values($exits), $formatter);
 		}
-
-
-
 
 
 		public function getTheme() {
@@ -172,9 +143,17 @@
 
 		protected function _registerExternalFile(FormView $formView) {
 			$script = array();
-			$script["bootstrap_jsdatepicker_js"] = new ExternalJs("/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js");
-			$script["bootstrap_jsdatepicker_language_js"] = new ExternalJs("/vendor/bootstrap-datepicker/dist/locales/bootstrap-datepicker." . $formView->vars["options"]["language"] . ".min.js", array("bootstrap_jsdatepicker_js"), "", "text/javascript", "script", "UTF-8");
-			$script["bootstrap_jsdatepicker_css"] = new ExternalCss("/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css", null, "", "stylesheet");
+			$script["moment_js"] = new ExternalJs("/vendor/moment/moment.js");
+
+			if (isset($formView->vars["options"]["locale"])) {
+				$script["moment_language_js"] = new ExternalJs("/vendor/moment/locale/" . $formView->vars["options"]["locale"] . ".js", array("moment_js"), "", "text/javascript", "script", "UTF-8");
+				$script["bootstrap_datepicker_js"] = new ExternalJs("/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js", array("moment_language_js"));
+			} else {
+				$script["bootstrap_datepicker_js"] = new ExternalJs("/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js", array("moment_js"));
+			}
+
+			$script["bootstrap_datetimepicker_js"] = new ExternalJs("/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js", array("bootstrap_datepicker_js"));
+			$script["bootstrap_datetimepicker_css"] = new ExternalCss("/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css", null, "", "stylesheet");
 
 			return $script;
 		}
@@ -182,7 +161,7 @@
 
 		protected function _registerScript(FormView $formView) {
 			$script = array();
-			$script["script_date_picker"] = new ScriptFileTemplateJs("UneakFlatSkinBundle:Form:date_picker/date_picker_script.html.twig", null, array('item' => $formView));
+			$script["script_datetimepicker"] = new ScriptFileTemplateJs("UneakFlatSkinBundle:Form:date_picker/date_picker_script.html.twig", null, array('item' => $formView));
 
 			return $script;
 		}

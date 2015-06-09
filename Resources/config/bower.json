@@ -1,6 +1,6 @@
 {
 	"name": "FlatSkinBundle",
 	"dependencies": {
-		"bootstrap-datepicker": "latest"
+		"eonasdan-bootstrap-datetimepicker": "latest"
 	}
 }
