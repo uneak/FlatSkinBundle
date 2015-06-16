@@ -1,0 +1,21 @@
+<div class="panel">
+	<div class="panel-body">
+		<div class="media">
+			{%  if item.photo %}
+			<a class="pull-left" href="{{ item.link }}">
+				<img class="thumb media-object" src="{{ item.photo | imagine_filter('people') }}" alt="image"/>
+			</a>
+			{% endif %}
+			<div class="media-body">
+				<h4> {{ item.title }}{% if item.subtitle %} <span class="text-muted small"> - {{ item.subtitle }}</span>{% endif %}</h4>
+
+				{{ render_block(item.menu) }}
+
+				<address>
+					{{ item.description }}
+				</address>
+
+			</div>
+		</div>
+	</div>
+</div>

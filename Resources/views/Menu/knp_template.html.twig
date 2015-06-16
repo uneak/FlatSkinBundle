@@ -36,9 +36,7 @@
 		{% set listAttributes = listAttributes|merge({'class': listAttributes.class|default('')|trim}) %}
 
 		{% set listClass = '' %}
-		{% if options.style is defined and options.style == 'flat-menu' %}
-			{% set listClass = 'sub' %}
-		{% elseif options.style is defined and options.style == 'tabs' %}
+		{% if options.style is defined and options.style == 'tabs' %}
 			{% set listClass = 'nav-tabs' %}
 		{% elseif options.style is defined and options.style == 'stacked-tabs' %}
 			{% set listClass = 'nav-tabs nav-stacked' %}
@@ -56,6 +54,8 @@
 			{% set listClass = 'navbar-nav' %}
 		{% elseif options.style is defined and options.style == 'navbar-right' %}
 			{% set listClass = 'navbar-nav navbar-right' %}
+		{% elseif options.style is defined and options.style == 'social-links' %}
+			{% set listClass = 'social-links' %}
 		{% endif %}
 
 		{% if options.pull is defined and options.pull == 'right' %}
@@ -64,8 +64,8 @@
 			{% set listClass = (listClass|default('') ~ 'pull-left')|trim %}
 		{% endif %}
 
-		{% if listClass != '' %}{% set listClass = (options.currentDepth == 0) ? listClass ~ ' nav' : listClass %}{% endif %}
-{#		{% set listClass = (options.currentDepth == 0) ? listClass ~ ' nav' : listClass %}#}
+		{% if listClass != '' and listClass != 'social-links' %}{% set listClass = (options.currentDepth == 0) ? listClass ~ ' nav' : listClass %}{% endif %}
+		{#		{% set listClass = (options.currentDepth == 0) ? listClass ~ ' nav' : listClass %}#}
 
 		{% set listAttributes = listAttributes|merge({'class': (listAttributes.class|default('') ~ ' ' ~ listClass)|trim}) %}
 
@@ -188,7 +188,15 @@
 
 
 {% block linkElement %}
-	<a href="{{ item.uri }}"{{ _self.attributes(item.linkAttributes) }}>{{ block('label') }}</a>
+
+	{% if listClass != '' and listClass == 'social-links' %}
+		{% set linkAttributes = item.linkAttributes|merge({'class': (item.linkAttributes.class|default('') ~ ' ' ~ 'tooltips')|trim, 'data-original-title' : item.label, 'title' : item.label, 'data-placement' : 'top', 'data-toggle' : 'tooltip' }) %}
+		<a href="{{ item.uri }}"{{ _self.attributes(linkAttributes) }}>{% if item.icon %}{{ icon(item.icon) }}{% endif %}</a>
+	{% else %}
+		<a href="{{ item.uri }}"{{ _self.attributes(item.linkAttributes) }}>{{ block('label') }}</a>
+	{% endif %}
+
+
 {% endblock %}
 
 

@@ -5648,7 +5648,7 @@ a.guest-on i {
 
 /*Directory Styles*/
 
-.directory-list, .directory-info-row .social-links {
+.directory-list, .social-links {
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -5676,7 +5676,7 @@ a.guest-on i {
     -webkit-border-radius: 5px;
 }
 
-.directory-list li a:hover, .directory-info-row .social-links li a:hover {
+.social-links li a:hover {
     background:#ff6c60;
     color: #fff;
 }
@@ -5686,16 +5686,16 @@ a.guest-on i {
     width: 100%;
     margin-top: 20px;
 }
-.directory-info-row .social-links {
+.social-links {
     display: inline-block;
     margin-bottom: 10px;
 }
 
-.directory-info-row .social-links li{
+.social-links li{
     display: inline-block;
 }
 
-.directory-info-row .social-links li a{
+.social-links li a{
     background: #EFF0F4;
     width: 30px;
     height: 30px;
