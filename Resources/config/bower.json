@@ -1,6 +1,7 @@
 {
 	"name": "FlatSkinBundle",
 	"dependencies": {
-		"eonasdan-bootstrap-datetimepicker": "latest"
+		"eonasdan-bootstrap-datetimepicker": "latest",
+		"jquery-locationpicker-plugin": "latest"
 	}
 }

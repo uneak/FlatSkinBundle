@@ -87,52 +87,10 @@
 
 			$resolver->setDefined(
 				array(
-					//					'markup',
-					//					'format',
-					//					'formatter',
 					'options',
 				)
 			);
 
-		}
-
-
-		/**
-		 * Convert the PHP date format to Bootstrap Datetimepicker date format
-		 */
-		public static function convertIntlFormaterToMalot($formatter) {
-			$intlToMalot = array_combine(self::$intlFormater, self::$malotFormater);
-			$patterns = preg_split('([\\\/.:_;,\s-\ ]{1})', $formatter);
-			$exits = array();
-			foreach ($patterns as $val) {
-				if (isset($intlToMalot[$val])) {
-					$exits[$val] = $intlToMalot[$val];
-				} else {
-					// it can throw an Exception
-					$exits[$val] = $val;
-				}
-			}
-
-			return str_replace(array_keys($exits), array_values($exits), $formatter);
-		}
-
-		/**
-		 * Convert the Bootstrap Datetimepicker date format to PHP date format
-		 */
-		public static function convertMalotToIntlFormater($formatter) {
-			$malotToIntl = array_combine(self::$malotFormater, self::$intlFormater);
-			$patterns = preg_split('([\\\/.:_;,\s-\ ]{1})', $formatter);
-			$exits = array();
-			foreach ($patterns as $val) {
-				if (isset($malotToIntl[$val])) {
-					$exits[$val] = $malotToIntl[$val];
-				} else {
-					// it can throw an Exception
-					$exits[$val] = $val;
-				}
-			}
-
-			return str_replace(array_keys($exits), array_values($exits), $formatter);
 		}
 
 

@@ -1,6 +1,7 @@
 parameters:
     uneak.flatskin.type.gender.class: Uneak\FlatSkinBundle\Form\GenderType
     uneak.flatskin.type.date_picker.class: Uneak\FlatSkinBundle\Form\DatePickerType
+    uneak.flatskin.type.location_picker.class: Uneak\FlatSkinBundle\Form\LocationPickerType
 
 services:
 
@@ -13,3 +14,8 @@ services:
         class: %uneak.flatskin.type.date_picker.class%
         tags:
             - { name: form.type, alias: date_picker }
+
+    uneak.flatskin.type.location_picker:
+        class: %uneak.flatskin.type.location_picker.class%
+        tags:
+            - { name: form.type, alias: location_picker }

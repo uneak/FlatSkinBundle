@@ -1,0 +1,21 @@
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#container_{{ item.vars.id }}').locationpicker({
+			{% for key, option in item.vars.options %}
+				{{ key }}: {{ option | json_encode | raw }},
+			{% endfor %}
+
+			onchanged: function (currentLocation, radius, isMarkerDropped) {
+				var location = $(this).locationpicker('map').location;
+				$('#{{ item.vars.id }}').val(JSON.stringify(location));
+
+			},
+			oninitialized: function(component) {
+				var location = $(component).locationpicker('map').location;
+				$('#{{ item.vars.id }}').val(JSON.stringify(location));
+
+			}
+		});
+
+	});
+</script>
