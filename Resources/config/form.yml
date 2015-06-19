@@ -2,6 +2,8 @@ parameters:
     uneak.flatskin.type.gender.class: Uneak\FlatSkinBundle\Form\GenderType
     uneak.flatskin.type.date_picker.class: Uneak\FlatSkinBundle\Form\DatePickerType
     uneak.flatskin.type.location_picker.class: Uneak\FlatSkinBundle\Form\LocationPickerType
+    uneak.flatskin.type.file_picker.class: Uneak\FlatSkinBundle\Form\FilePickerType
+    uneak.flatskin.type.select2.class: Uneak\FlatSkinBundle\Form\Select2Type
 
 services:
 
@@ -19,3 +21,17 @@ services:
         class: %uneak.flatskin.type.location_picker.class%
         tags:
             - { name: form.type, alias: location_picker }
+
+    uneak.flatskin.type.select2:
+        class: %uneak.flatskin.type.select2.class%
+        tags:
+            - { name: form.type, alias: select2 }
+
+    uneak.flatskin.type.file_picker:
+        class: %uneak.flatskin.type.file_picker.class%
+        arguments:
+            - @vich_uploader.storage
+            - @vich_uploader.upload_handler
+            - @translator
+        tags:
+            - { name: form.type, alias: file_picker }

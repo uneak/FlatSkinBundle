@@ -2,6 +2,10 @@
 	"name": "FlatSkinBundle",
 	"dependencies": {
 		"eonasdan-bootstrap-datetimepicker": "latest",
-		"jquery-locationpicker-plugin": "latest"
+		"jquery-locationpicker-plugin": "latest",
+		"jquery-file-upload": "latest",
+		"jquery-ui": "latest",
+		"select2": "latest",
+        "select2-bootstrap-css": "latest"
 	}
 }

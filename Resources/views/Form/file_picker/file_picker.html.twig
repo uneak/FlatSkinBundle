@@ -1,0 +1,31 @@
+{% block file_picker_widget %}
+	{% spaceless %}
+
+		<div id="{{ "container_" ~ id }}" class="file-picker-container" style="width: 100%; height: 300px;">
+			<div id="{{ "drop_" ~ id }}" class="file-picker-drop">
+
+				Drop Here
+				<a id="{{ "browse_" ~ id }}" class="btn btn-success file-picker-browse" href="#">Parcourir</a>
+
+
+				{#<input id="{{ id }}" type="file" name="{{ id }}[]" multiple>#}
+				<input id="{{ id }}" type="file" name="{{ id }}" class="hidden" >
+
+				{#{{ form_widget(form.file) }}#}
+
+				{% if form.delete is defined %}
+					{{ form_row(form.delete) }}
+				{% endif %}
+
+				{% if download_uri is defined and download_uri %}
+					<a href="{{ download_uri }}">{{ 'download'|trans({}, 'VichUploaderBundle') }}</a>
+				{% endif %}
+			</div>
+
+			<ul id="{{ "list_" ~ id }}" class="file-picker-list"></ul>
+
+		</div>
+
+
+	{% endspaceless %}
+{% endblock %}

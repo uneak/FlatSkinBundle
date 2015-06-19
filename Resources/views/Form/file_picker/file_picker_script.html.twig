@@ -1,0 +1,87 @@
+{#{{ ld(item) }}#}
+<script type="text/javascript">
+	$(document).ready(function () {
+
+		var url = "{{ path('file_picker_upload') }}";
+		var $container = $('#container_{{ item.vars.id }}');
+		var $list = $('#list_{{ item.vars.id }}');
+		var $drop = $('#drop_{{ item.vars.id }}');
+		var $browse = $('#browse_{{ item.vars.id }}');
+		var $input = $('#{{ item.vars.id }}');
+
+		$browse.on("click", function(e) {
+			e.preventDefault();
+			$input.click();
+		});
+
+
+		$input.fileupload({
+			url: url,
+			dataType: 'json',
+			dropZone: $drop,
+
+			add: function (e, data) {
+
+				var tpl = $('<li class="working"><span class="progress"></span><p></p><span></span></li>');
+
+				// Append the file name and file size
+				tpl.find('p').text(data.files[0].name).append(' <i>' + formatFileSize(data.files[0].size) + '</i>');
+
+				// Add the HTML to the UL element
+				data.context = tpl.appendTo($list);
+
+				// Listen for clicks on the cancel icon
+				tpl.find('span').click(function(){
+
+					if(tpl.hasClass('working')){
+						jqXHR.abort();
+					}
+
+					tpl.fadeOut(function(){
+						tpl.remove();
+					});
+
+				});
+
+				// Automatically upload the file once it is added to the queue
+				var jqXHR = data.submit();
+			},
+
+			progress: function(e, data){
+
+				var progress = parseInt(data.loaded / data.total * 100, 10);
+				data.context.find('.progress').text(progress+" %");
+
+				if(progress == 100){
+					data.context.removeClass('working');
+				}
+			},
+
+
+		});
+
+		// Prevent the default action when a file is dropped on the window
+		$(document).on('drop dragover', function (e) {
+			e.preventDefault();
+		});
+
+		// Helper function that formats the file sizes
+		function formatFileSize(bytes) {
+			if (typeof bytes !== 'number') {
+				return '';
+			}
+			if (bytes >= 1000000000) {
+				return (bytes / 1000000000).toFixed(2) + ' GB';
+			}
+			if (bytes >= 1000000) {
+				return (bytes / 1000000).toFixed(2) + ' MB';
+			}
+			return (bytes / 1000).toFixed(2) + ' KB';
+		}
+
+
+
+
+
+	});
+</script>

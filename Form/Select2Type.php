@@ -5,8 +5,6 @@
 	use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToLocalizedStringTransformer;
 	use Symfony\Component\Form\Extension\Core\DataTransformer\DateTimeToRfc3339Transformer;
 	use Symfony\Component\Form\FormBuilderInterface;
-	use Symfony\Component\Form\FormEvent;
-	use Symfony\Component\Form\FormEvents;
 	use Symfony\Component\Form\FormInterface;
 	use Symfony\Component\Form\FormView;
 	use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
@@ -17,34 +15,13 @@
 	use Uneak\AdminBundle\Assets\ExternalJs;
 	use Uneak\AdminBundle\Assets\ScriptFileTemplateJs;
 	use Uneak\AdminBundle\Form\AssetsAbstractType;
-	use Uneak\FlatSkinBundle\Form\DataTransformer\StringToJsonArrayTransformer;
 	use Uneak\FlatSkinBundle\Form\Transformer\DateTimeToPickerTransformer;
 
-	class LocationPickerType extends AssetsAbstractType {
-
-
-		public function buildForm(FormBuilderInterface $builder, array $options) {
-
-			$builder->addModelTransformer(new StringToJsonArrayTransformer());
-
-		}
+	class Select2Type extends AssetsAbstractType {
 
 
 		public function buildView(FormView $view, FormInterface $form, array $options) {
-
 			$view->vars['options'] = $options['options'];
-
-			$value = json_decode($view->vars['value']);
-
-			if ($value) {
-				$view->vars['options']['location'] = array(
-					'latitude' => $value->latitude,
-					'longitude' => $value->longitude,
-				);
-			}
-
-
-
 		}
 
 
@@ -52,7 +29,6 @@
 
 			$resolver->setDefaults(array(
 				'options' => array(),
-				'compound' => false
 			));
 
 			$resolver->setDefined(
@@ -60,19 +36,24 @@
 					'options',
 				)
 			);
-
 		}
 
 
 		public function getTheme() {
-			return "UneakFlatSkinBundle:Form:location_picker/location_picker.html.twig";
+			return "UneakFlatSkinBundle:Form:select2/select2.html.twig";
 		}
 
 
 		protected function _registerExternalFile(FormView $formView) {
 			$script = array();
-			$script["google_map_js"] = new ExternalJs("http://maps.google.com/maps/api/js?sensor=false&libraries=places");
-			$script["locationpicker_js"] = new ExternalJs("/vendor/jquery-locationpicker-plugin/dist/locationpicker.jquery.js", array("google_map_js"));
+			$script["select2_js"] = new ExternalJs("/vendor/select2/select2.js");
+
+			if (isset($formView->vars["options"]["language"])) {
+				$script["select2_language_js"] = new ExternalJs("/vendor/select2/select2_locale_" . $formView->vars["options"]["language"] . ".js", array("select2_js"), "", "text/javascript", "script", "UTF-8");
+			}
+
+			$script["select2_css"] = new ExternalCss("/vendor/select2/select2.css", null, "", "stylesheet");
+			$script["select2_bootstrap_css"] = new ExternalCss("/vendor/select2-bootstrap-css/select2-bootstrap.css", array("select2_css"), "", "stylesheet");
 
 			return $script;
 		}
@@ -80,14 +61,18 @@
 
 		protected function _registerScript(FormView $formView) {
 			$script = array();
-			$script["script_locationpicker"] = new ScriptFileTemplateJs("UneakFlatSkinBundle:Form:location_picker/location_picker_script.html.twig", null, array('item' => $formView));
+			$script["script_select2"] = new ScriptFileTemplateJs("UneakFlatSkinBundle:Form:select2/select2_script.html.twig", null, array('item' => $formView));
 
 			return $script;
 		}
 
 
+		public function getParent() {
+			return 'choice';
+		}
+
 		public function getName() {
-			return 'location_picker';
+			return 'select2';
 		}
 
 	}
