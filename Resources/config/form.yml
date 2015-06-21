@@ -3,7 +3,8 @@ parameters:
     uneak.flatskin.type.date_picker.class: Uneak\FlatSkinBundle\Form\DatePickerType
     uneak.flatskin.type.location_picker.class: Uneak\FlatSkinBundle\Form\LocationPickerType
     uneak.flatskin.type.file_picker.class: Uneak\FlatSkinBundle\Form\FilePickerType
-    uneak.flatskin.type.select2.class: Uneak\FlatSkinBundle\Form\Select2Type
+    uneak.flatskin.type.choice.select2.class: Uneak\FlatSkinBundle\Form\ChoiceSelect2Type
+    uneak.flatskin.type.entity.select2.class: Uneak\FlatSkinBundle\Form\EntitySelect2Type
 
 services:
 
@@ -22,10 +23,15 @@ services:
         tags:
             - { name: form.type, alias: location_picker }
 
-    uneak.flatskin.type.select2:
-        class: %uneak.flatskin.type.select2.class%
+    uneak.flatskin.type.choice.select2:
+        class: %uneak.flatskin.type.choice.select2.class%
         tags:
-            - { name: form.type, alias: select2 }
+            - { name: form.type, alias: choice_select2 }
+
+    uneak.flatskin.type.entity.select2:
+        class: %uneak.flatskin.type.entity.select2.class%
+        tags:
+            - { name: form.type, alias: entity_select2 }
 
     uneak.flatskin.type.file_picker:
         class: %uneak.flatskin.type.file_picker.class%

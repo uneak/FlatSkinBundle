@@ -1,0 +1,22 @@
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var latlng = new google.maps.LatLng({{ item.getMeta("latitude") }}, {{ item.getMeta("longitude") }});
+
+        var map = new google.maps.Map(document.getElementById("{{ item.uniqid }}"), {
+                center: latlng,
+                zoom: 13
+            }
+        );
+
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            animation: google.maps.Animation.DROP,
+            title: "{{ item.title }}"
+        });
+
+    });
+
+</script>

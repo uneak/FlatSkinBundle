@@ -5815,3 +5815,8 @@ a.guest-on i {
     font-size: 12px;
     text-transform: uppercase;
 }
+
+.block-googlemap {
+    width: 100%;
+    height: 300px;
+}

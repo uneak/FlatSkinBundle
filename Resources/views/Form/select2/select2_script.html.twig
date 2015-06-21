@@ -1,5 +1,6 @@
 <script type="text/javascript">
-
-	$('#{{ item.vars.id }}').select2({{ item.vars.options | json_encode | raw }});
+    $(document).ready(function() {
+        $('#{{ item.vars.id }}').select2({{ item.vars.options | json_encode | raw }});
+    }
 
 </script>

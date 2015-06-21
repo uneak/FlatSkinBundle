@@ -17,7 +17,7 @@
 	use Uneak\AdminBundle\Form\AssetsAbstractType;
 	use Uneak\FlatSkinBundle\Form\Transformer\DateTimeToPickerTransformer;
 
-	class Select2Type extends AssetsAbstractType {
+	abstract class Select2Type extends AssetsAbstractType {
 
 
 		public function buildView(FormView $view, FormInterface $form, array $options) {
@@ -66,13 +66,5 @@
 			return $script;
 		}
 
-
-		public function getParent() {
-			return 'choice';
-		}
-
-		public function getName() {
-			return 'select2';
-		}
 
 	}
