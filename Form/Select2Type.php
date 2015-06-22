@@ -22,6 +22,11 @@
 
 		public function buildView(FormView $view, FormInterface $form, array $options) {
 			$view->vars['options'] = $options['options'];
+			if ($options['empty_value']) {
+				$view->vars['options']['placeholder'] = $options['empty_value'];
+				$view->vars['empty_value'] = "";
+			}
+
 		}
 
 

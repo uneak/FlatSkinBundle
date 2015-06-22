@@ -33,23 +33,6 @@
 			return "UneakFlatSkinBundle:Form:gender/gender.html.twig";
 		}
 
-		protected function _registerExternalFile(FormView $formView) {
-			$script = array();
-			$script["morris_js"] = new ExternalJs("/bundles/uneakflatskin/assets/morris.js-0.4.3/morris.min.js");
-			$script["raphael_js"] = new ExternalJs("/bundles/uneakflatskin/assets/morris.js-0.4.3/raphael-min.js", array("morris_js"));
-
-			$script["morris_css"] = new ExternalCss("/bundles/uneakflatskin/assets/morris.js-0.4.3/morris.css", null, "", "stylesheet");
-			return $script;
-		}
-
-
-		protected function _registerScript(FormView $formView) {
-			$script = array();
-			$script[] = new ScriptFileTemplateJs("UneakFlatSkinBundle:Form:gender/gender_script.html.twig", null, array('item' => $formView));
-			return $script;
-		}
-
-
 		public function getParent() {
 			return 'choice';
 		}
