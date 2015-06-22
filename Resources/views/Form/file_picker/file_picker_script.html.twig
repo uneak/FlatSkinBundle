@@ -7,7 +7,7 @@
 		var $list = $('#list_{{ item.vars.id }}');
 		var $drop = $('#drop_{{ item.vars.id }}');
 		var $browse = $('#browse_{{ item.vars.id }}');
-		var $input = $('#{{ item.vars.id }}');
+		var $input = $('#file_{{ item.vars.id }}');
 
 		$browse.on("click", function(e) {
 			e.preventDefault();
@@ -43,6 +43,8 @@
 
 				});
 
+				console.log(e);
+				console.log(data);
 				// Automatically upload the file once it is added to the queue
 				var jqXHR = data.submit();
 			},

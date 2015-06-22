@@ -1,0 +1,5 @@
+<script type="text/javascript">
+	$(document).ready(function () {
+		CKEDITOR.replace('{{ item.vars.id }}', {{ item.vars.options | json_encode | raw }});
+	});
+</script>

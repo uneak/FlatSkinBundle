@@ -5,6 +5,7 @@ parameters:
     uneak.flatskin.type.file_picker.class: Uneak\FlatSkinBundle\Form\FilePickerType
     uneak.flatskin.type.choice.select2.class: Uneak\FlatSkinBundle\Form\ChoiceSelect2Type
     uneak.flatskin.type.entity.select2.class: Uneak\FlatSkinBundle\Form\EntitySelect2Type
+    uneak.flatskin.type.ckeditor.class: Uneak\FlatSkinBundle\Form\CKEditorType
 
 services:
 
@@ -33,11 +34,12 @@ services:
         tags:
             - { name: form.type, alias: entity_select2 }
 
+    uneak.flatskin.type.ckeditor:
+        class: %uneak.flatskin.type.ckeditor.class%
+        tags:
+            - { name: form.type, alias: ckeditor }
+
     uneak.flatskin.type.file_picker:
         class: %uneak.flatskin.type.file_picker.class%
-        arguments:
-            - @vich_uploader.storage
-            - @vich_uploader.upload_handler
-            - @translator
         tags:
             - { name: form.type, alias: file_picker }

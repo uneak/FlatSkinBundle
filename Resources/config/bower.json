@@ -6,6 +6,8 @@
 		"jquery-file-upload": "latest",
 		"jquery-ui": "latest",
 		"select2": "latest",
-        "select2-bootstrap-css": "latest"
+        "select2-bootstrap-css": "latest",
+        "ckeditor": "latest",
+        "bootstrapck4-skin": "latest"
 	}
 }
