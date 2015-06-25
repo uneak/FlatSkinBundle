@@ -2,7 +2,7 @@
 
 namespace Uneak\FlatSkinBundle\Block\Stat;
 
-use Uneak\AdminBundle\Block\Block;
+use Uneak\BlocksManagerBundle\Blocks\Block;
 
 class Stat extends Block {
 

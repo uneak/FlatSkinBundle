@@ -13,9 +13,9 @@
 	use Symfony\Component\OptionsResolver\Options;
 	use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 	use Symfony\Component\Validator\Constraints\Collection;
-	use Uneak\AdminBundle\Assets\ExternalCss;
-	use Uneak\AdminBundle\Assets\ExternalJs;
-	use Uneak\AdminBundle\Assets\ScriptFileTemplateJs;
+	use Uneak\AssetsManagerBundle\Assets\AssetExternalCss;
+	use Uneak\AssetsManagerBundle\Assets\AssetExternalJs;
+	use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
 	use Uneak\AdminBundle\Form\AssetsAbstractType;
 	use Uneak\FlatSkinBundle\Form\DataTransformer\StringToJsonArrayTransformer;
 	use Uneak\FlatSkinBundle\Form\Transformer\DateTimeToPickerTransformer;
@@ -69,18 +69,12 @@
 		}
 
 
-		protected function _registerExternalFile(FormView $formView) {
+		protected function _registerAssets(FormView $formView) {
 			$script = array();
-			$script["google_map_js"] = new ExternalJs("http://maps.google.com/maps/api/js?sensor=false&libraries=places");
-			$script["locationpicker_js"] = new ExternalJs("/vendor/jquery-locationpicker-plugin/dist/locationpicker.jquery.js", array("google_map_js"));
+			$script["google_map_js"] = new AssetExternalJs("http://maps.google.com/maps/api/js?sensor=false&libraries=places");
+			$script["locationpicker_js"] = new AssetExternalJs("/vendor/jquery-locationpicker-plugin/dist/locationpicker.jquery.js", array("google_map_js"));
 
-			return $script;
-		}
-
-
-		protected function _registerScript(FormView $formView) {
-			$script = array();
-			$script["script_locationpicker"] = new ScriptFileTemplateJs("UneakFlatSkinBundle:Form:location_picker/location_picker_script.html.twig", null, array('item' => $formView));
+			$script["script_locationpicker"] = new AssetInternalJs("UneakFlatSkinBundle:Form:location_picker/location_picker_script.html.twig", null, array('item' => $formView));
 
 			return $script;
 		}

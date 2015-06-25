@@ -2,11 +2,9 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Component;
 
-	use Uneak\AdminBundle\Assets\ScriptJs;
-	use Uneak\AdminBundle\Block\Block;
-	use Uneak\AdminBundle\Block\Component;
-	use Uneak\AdminBundle\Assets\ExternalJs;
-	use Uneak\AdminBundle\Assets\ScriptFileTemplateJs;
+	use Uneak\BlocksManagerBundle\Blocks\Component;
+	use Uneak\AssetsManagerBundle\Assets\AssetExternalJs;
+	use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
 
 	class Sparkline extends Component {
 
@@ -37,16 +35,12 @@
 
 		}
 
-		public function _registerExternalFile() {
+		public function _registerAssets() {
 			$script = array();
-			$script["sparkline_js"] = new ExternalJs("/bundles/uneakflatskin/js/jquery.sparkline.js");
-			return $script;
-		}
+			$script["sparkline_js"] = new AssetExternalJs("/bundles/uneakflatskin/js/jquery.sparkline.js");
 
-		public function _registerScript() {
-			$script = array();
 			$script_ = "$(function() { $('#{{ item.uniqid }}').sparkline({{ item.values | json_encode() }}, {{ item.jsArray | raw }}); });";
-			$script["script_sparkline"] = new ScriptJs($script_, null, array('item' => $this));
+			$script["script_sparkline"] = new AssetInternalJs($script_, null, array('item' => $this));
 			return $script;
 		}
 

@@ -2,9 +2,9 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Panel;
 
-	use Uneak\AdminBundle\Block\BlockContainer;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
 
-	class TeamStat extends BlockContainer {
+	class TeamStat extends Block {
 
 		protected $subTitle;
 		protected $description;

@@ -2,9 +2,9 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Panel;
 
-	use Uneak\AdminBundle\Block\BlockContainer;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
 
-	class Wrapper extends BlockContainer {
+	class Wrapper extends Block {
 
 		protected $collapsable = false;
 		protected $columns = 2;

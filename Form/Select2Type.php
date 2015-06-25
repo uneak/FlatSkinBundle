@@ -10,9 +10,9 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Validator\Constraints\Collection;
-use Uneak\AdminBundle\Assets\ExternalCss;
-use Uneak\AdminBundle\Assets\ExternalJs;
-use Uneak\AdminBundle\Assets\ScriptFileTemplateJs;
+use Uneak\AssetsManagerBundle\Assets\AssetExternalCss;
+use Uneak\AssetsManagerBundle\Assets\AssetExternalJs;
+use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
 use Uneak\AdminBundle\Form\AssetsAbstractType;
 use Uneak\FlatSkinBundle\Form\DataTransformer\ChoiceToTagTransformer;
 use Uneak\FlatSkinBundle\Form\DataTransformer\StringToChoiceArrayTransformer;
@@ -115,26 +115,19 @@ abstract class Select2Type extends AssetsAbstractType
     }
 
 
-    protected function _registerExternalFile(FormView $formView)
+    protected function _registerAssets(FormView $formView)
     {
         $script = array();
-        $script["select2_js"] = new ExternalJs("/vendor/select2/select2.js");
+        $script["select2_js"] = new AssetExternalJs("/vendor/select2/select2.js");
 
         if (isset($formView->vars["options"]["language"])) {
-            $script["select2_language_js"] = new ExternalJs("/vendor/select2/select2_locale_" . $formView->vars["options"]["language"] . ".js", array("select2_js"), "", "text/javascript", "script", "UTF-8");
+            $script["select2_language_js"] = new AssetExternalJs("/vendor/select2/select2_locale_" . $formView->vars["options"]["language"] . ".js", array("select2_js"), "", "text/javascript", "script", "UTF-8");
         }
 
-        $script["select2_css"] = new ExternalCss("/vendor/select2/select2.css", null, "", "stylesheet");
-        $script["select2_bootstrap_css"] = new ExternalCss("/vendor/select2-bootstrap-css/select2-bootstrap.css", array("select2_css"), "", "stylesheet");
+        $script["select2_css"] = new AssetExternalCss("/vendor/select2/select2.css", null, "", "stylesheet");
+        $script["select2_bootstrap_css"] = new AssetExternalCss("/vendor/select2-bootstrap-css/select2-bootstrap.css", array("select2_css"), "", "stylesheet");
 
-        return $script;
-    }
-
-
-    protected function _registerScript(FormView $formView)
-    {
-        $script = array();
-        $script["script_select2"] = new ScriptFileTemplateJs("UneakFlatSkinBundle:Form:select2/select2_script.html.twig", null, array('item' => $formView));
+        $script["script_select2"] = new AssetInternalJs("UneakFlatSkinBundle:Form:select2/select2_script.html.twig", null, array('item' => $formView));
 
         return $script;
     }

@@ -3,10 +3,10 @@
 	namespace Uneak\FlatSkinBundle\Block\Panel;
 
 	use Knp\Menu\FactoryInterface;
-	use Uneak\AdminBundle\Block\BlockContainer;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
 	use Uneak\FlatSkinBundle\Block\Menu\Menu;
 
-	class PanelPeople extends BlockContainer {
+	class PanelPeople extends Block {
 
 		protected $description;
 		protected $photo;

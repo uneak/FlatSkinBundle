@@ -23,15 +23,15 @@
 
 {% block stylesheets_page %}
 	{{ parent() }}
-	{{ externalAssets('ExternalCss') }}
+	{{ renderAssets('AssetExternalCss') }}
 {% endblock %}
 
 {% block javascripts_bottom_page %}
 	{{ parent() }}
-	{{ externalAssets('ExternalJs') }}
+	{{ renderAssets('AssetExternalJs') }}
 {% endblock %}
 
 {% block javascript_script %}
 	{{ parent() }}
-	{{ scriptAssets('ScriptJs') }}
+	{{ renderAssets('AssetInternalJs') }}
 {% endblock %}

@@ -2,9 +2,9 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Panel;
 
-	use Uneak\AdminBundle\Block\BlockContainer;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
 
-	class Follower extends BlockContainer {
+	class Follower extends Block {
 
 		protected $color = "green";
 		protected $photo;

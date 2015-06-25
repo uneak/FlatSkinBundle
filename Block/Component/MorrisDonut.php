@@ -2,8 +2,7 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Component;
 
-	use Uneak\AdminBundle\Assets\ScriptFileTemplateJs;
-	use Uneak\AdminBundle\Assets\ScriptJs;
+	use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
 
 	class MorrisDonut extends Morris {
 
@@ -19,7 +18,7 @@
 		public function _registerScript() {
 			$script = array();
 			$script_ = "$(function() { Morris.Donut({{ item.jsArray | raw }}); });";
-			$script["script_morris_donut"] = new ScriptJs($script_, null, array('item' => $this));
+			$script["script_morris_donut"] = new AssetInternalJs($script_, null, array('item' => $this));
 			return $script;
 		}
 

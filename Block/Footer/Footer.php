@@ -2,7 +2,7 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Footer;
 
-	use Uneak\AdminBundle\Block\Block;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
 
 	class Footer extends Block {
 

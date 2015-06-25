@@ -2,8 +2,7 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Component;
 
-	use Uneak\AdminBundle\Assets\ScriptFileTemplateJs;
-	use Uneak\AdminBundle\Assets\ScriptJs;
+	use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
 
 	class MorrisArea extends MorrisLine {
 
@@ -18,7 +17,7 @@
 		protected function _registerScript() {
 			$script = array();
 			$script_ = "$(function() { Morris.Area({{ item.jsArray | raw }}); });";
-			$script["script_morris_area"] = new ScriptJs($script_, null, array('item' => $this));
+			$script["script_morris_area"] = new AssetInternalJs($script_, null, array('item' => $this));
 			return $script;
 		}
 

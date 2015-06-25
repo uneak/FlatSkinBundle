@@ -2,9 +2,9 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Panel;
 
-	use Uneak\AdminBundle\Block\BlockContainer;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
 
-	class SimpleTitle extends BlockContainer {
+	class SimpleTitle extends Block {
 
 		public function __construct() {
 			parent::__construct();

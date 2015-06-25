@@ -3,7 +3,7 @@
 	namespace Uneak\FlatSkinBundle\Block\Menu;
 
 	use Knp\Menu\FactoryInterface;
-	use Uneak\AdminBundle\Block\Block;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
 
 	class MainMenu extends Menu {
 

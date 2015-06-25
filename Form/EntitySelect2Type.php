@@ -11,9 +11,9 @@
 	use Symfony\Component\OptionsResolver\Options;
 	use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 	use Symfony\Component\Validator\Constraints\Collection;
-	use Uneak\AdminBundle\Assets\ExternalCss;
-	use Uneak\AdminBundle\Assets\ExternalJs;
-	use Uneak\AdminBundle\Assets\ScriptFileTemplateJs;
+	use Uneak\AssetsManagerBundle\Assets\AssetExternalCss;
+	use Uneak\AssetsManagerBundle\Assets\AssetExternalJs;
+	use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
 	use Uneak\AdminBundle\Form\AssetsAbstractType;
 	use Uneak\FlatSkinBundle\Form\Transformer\DateTimeToPickerTransformer;
 

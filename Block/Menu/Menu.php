@@ -4,7 +4,7 @@
 
 	use Knp\Menu\FactoryInterface;
 	use Knp\Menu\ItemInterface;
-	use Uneak\AdminBundle\Block\Block;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
 
 	class Menu extends Block {
 

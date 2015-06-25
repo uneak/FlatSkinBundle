@@ -2,7 +2,7 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Message;
 
-	use Uneak\AdminBundle\Block\Block;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
 
 	class Message extends Block {
 

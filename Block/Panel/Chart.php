@@ -2,9 +2,9 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Panel;
 
-	use Uneak\AdminBundle\Block\BlockContainer;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
 
-	class Chart extends BlockContainer {
+	class Chart extends Block {
 
 		protected $titleValue;
 		protected $value;

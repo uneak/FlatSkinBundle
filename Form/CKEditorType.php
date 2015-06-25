@@ -13,9 +13,9 @@
 	use Symfony\Component\OptionsResolver\Options;
 	use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 	use Symfony\Component\Validator\Constraints\Collection;
-	use Uneak\AdminBundle\Assets\ExternalCss;
-	use Uneak\AdminBundle\Assets\ExternalJs;
-	use Uneak\AdminBundle\Assets\ScriptFileTemplateJs;
+	use Uneak\AssetsManagerBundle\Assets\AssetExternalCss;
+	use Uneak\AssetsManagerBundle\Assets\AssetExternalJs;
+	use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
 	use Uneak\AdminBundle\Form\AssetsAbstractType;
 	use Uneak\FlatSkinBundle\Form\DataTransformer\StringToJsonArrayTransformer;
 	use Uneak\FlatSkinBundle\Form\Transformer\DateTimeToPickerTransformer;
@@ -56,17 +56,11 @@
 //		}
 
 
-		protected function _registerExternalFile(FormView $formView) {
+		protected function _registerAssets(FormView $formView) {
 			$script = array();
-			$script["ckeditor_js"] = new ExternalJs("/vendor/ckeditor/ckeditor.js");
+			$script["ckeditor_js"] = new AssetExternalJs("/vendor/ckeditor/ckeditor.js");
 
-			return $script;
-		}
-
-
-		protected function _registerScript(FormView $formView) {
-			$script = array();
-			$script["script_ckeditor"] = new ScriptFileTemplateJs("UneakFlatSkinBundle:Form:ckeditor/ckeditor_script.html.twig", null, array('item' => $formView));
+			$script["script_ckeditor"] = new AssetInternalJs("UneakFlatSkinBundle:Form:ckeditor/ckeditor_script.html.twig", null, array('item' => $formView));
 
 			return $script;
 		}

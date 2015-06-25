@@ -2,8 +2,8 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Info;
 
-	use Uneak\AdminBundle\Block\Block;
-	use Uneak\AdminBundle\Block\BlockInterface;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
+	use Uneak\BlocksManagerBundle\Blocks\BlockInterface;
 
 	class Info extends Block {
 

@@ -5820,3 +5820,12 @@ a.guest-on i {
     width: 100%;
     height: 300px;
 }
+
+.vich-file,
+ul.bc-collection li {
+    list-style: none;
+    border: solid 1px #DDD;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 4px;
+}

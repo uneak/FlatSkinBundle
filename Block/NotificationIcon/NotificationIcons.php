@@ -2,9 +2,9 @@
 
 namespace Uneak\FlatSkinBundle\Block\NotificationIcon;
 
-use Uneak\AdminBundle\Block\BlockContainer;
+use Uneak\BlocksManagerBundle\Blocks\Block;
 
-class NotificationIcons extends BlockContainer {
+class NotificationIcons extends Block {
 
     public function __construct() {
         parent::__construct();

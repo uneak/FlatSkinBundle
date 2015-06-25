@@ -2,9 +2,9 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Info;
 
-	use Uneak\AdminBundle\Block\BlockContainer;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
 
-	class Infos extends BlockContainer {
+	class Infos extends Block {
 
 		protected $stripeRow = false;
 		protected $columns = 2;

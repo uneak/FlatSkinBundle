@@ -2,11 +2,10 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Component;
 
-	use Uneak\AdminBundle\Assets\ScriptJs;
-	use Uneak\AdminBundle\Block\Component;
-	use Uneak\AdminBundle\Assets\ExternalCss;
-	use Uneak\AdminBundle\Assets\ExternalJs;
-	use Uneak\AdminBundle\Assets\ScriptFileTemplateJs;
+	use Uneak\BlocksManagerBundle\Blocks\Component;
+	use Uneak\AssetsManagerBundle\Assets\AssetExternalCss;
+	use Uneak\AssetsManagerBundle\Assets\AssetExternalJs;
+	use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
 
 	class EasyPieChart extends Component {
 
@@ -33,17 +32,13 @@
 
 		}
 
-		public function _registerExternalFile() {
+		public function _registerAssets() {
 			$script = array();
-			$script["easy_pie_chart_js"] = new ExternalJs("/bundles/uneakflatskin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js");
-			$script["easy_pie_chart_css"] = new ExternalCss("/bundles/uneakflatskin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css", null, "screen", "stylesheet");
-			return $script;
-		}
+			$script["easy_pie_chart_js"] = new AssetExternalJs("/bundles/uneakflatskin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js");
+			$script["easy_pie_chart_css"] = new AssetExternalCss("/bundles/uneakflatskin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css", null, "screen", "stylesheet");
 
-		public function _registerScript() {
-			$script = array();
 			$script_ = "$(function() { $('#{{ item.uniqid }}').easyPieChart({{ item.jsArray | raw }}); });";
-			$script["script_easy_pie_chart"] = new ScriptJs($script_, null, array('item' => $this));
+			$script["script_easy_pie_chart"] = new AssetInternalJs($script_, null, array('item' => $this));
 			return $script;
 		}
 

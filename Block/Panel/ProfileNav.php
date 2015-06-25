@@ -3,9 +3,9 @@
 	namespace Uneak\FlatSkinBundle\Block\Panel;
 
 	use Knp\Menu\FactoryInterface;
-	use Uneak\AdminBundle\Block\BlockContainer;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
 
-	class ProfileNav extends BlockContainer {
+	class ProfileNav extends Block {
 
 		protected $description;
 		protected $color = "green";

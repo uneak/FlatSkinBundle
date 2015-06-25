@@ -3,10 +3,9 @@
 	namespace Uneak\FlatSkinBundle\Block\User;
 
 	use Knp\Menu\FactoryInterface;
-	use Uneak\AdminBundle\Block\Block;
-	use Uneak\AdminBundle\Block\BlockContainer;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
 
-	class User extends BlockContainer {
+	class User extends Block {
 
 		protected $username;
 		protected $photo;

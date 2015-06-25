@@ -2,9 +2,9 @@
 
 	namespace Uneak\FlatSkinBundle\Block;
 
-	use Uneak\AdminBundle\Block\BlockContainer;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
 
-	class FSBlockContainer extends BlockContainer {
+	class FSBlockContainer extends Block {
 
 		public function __construct() {
 			parent::__construct();

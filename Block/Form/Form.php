@@ -2,7 +2,7 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Form;
 
-	use Uneak\AdminBundle\Block\Block;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
 
 
 	class Form extends Block {

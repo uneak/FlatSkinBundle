@@ -2,9 +2,9 @@
 
 namespace Uneak\FlatSkinBundle\Block\Component;
 
-use Uneak\AdminBundle\Assets\ExternalJs;
-use Uneak\AdminBundle\Assets\ScriptFileTemplateJs;
-use Uneak\AdminBundle\Block\Component;
+use Uneak\AssetsManagerBundle\Assets\AssetExternalJs;
+use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
+use Uneak\BlocksManagerBundle\Blocks\Component;
 
 class GoogleMap extends Component
 {
@@ -19,17 +19,12 @@ class GoogleMap extends Component
 
     }
 
-    public function _registerExternalFile()
+    public function _registerAssets()
     {
         $script = array();
-        $script["google_map_js"] = new ExternalJs("http://maps.google.com/maps/api/js?sensor=false&libraries=places");
-        return $script;
-    }
+        $script["google_map_js"] = new AssetExternalJs("http://maps.google.com/maps/api/js?sensor=false&libraries=places");
 
-    public function _registerScript()
-    {
-        $script = array();
-        $script["script_google_map"] = new ScriptFileTemplateJs("UneakFlatSkinBundle:Block:GoogleMap/googlemap_script.html.twig", null, array('item' => $this));
+        $script["script_google_map"] = new AssetInternalJs("UneakFlatSkinBundle:Block:GoogleMap/googlemap_script.html.twig", null, array('item' => $this));
         return $script;
     }
 

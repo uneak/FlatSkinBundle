@@ -2,7 +2,7 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Brand;
 
-	use Uneak\AdminBundle\Block\Block;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
 
 	class Brand extends Block {
 

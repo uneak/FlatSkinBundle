@@ -2,8 +2,7 @@
 
 namespace Uneak\FlatSkinBundle\Block\NotificationIcon;
 
-use Uneak\AdminBundle\Block\Block;
-use Uneak\AdminBundle\Block\BlockInterface;
+use Uneak\BlocksManagerBundle\Blocks\BlockInterface;
 use Uneak\FlatSkinBundle\Block\Info\Info;
 
 class NotificationIcon extends Info {

@@ -14,9 +14,9 @@
 	use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 	use Symfony\Component\Translation\TranslatorInterface;
 	use Symfony\Component\Validator\Constraints\Collection;
-	use Uneak\AdminBundle\Assets\ExternalCss;
-	use Uneak\AdminBundle\Assets\ExternalJs;
-	use Uneak\AdminBundle\Assets\ScriptFileTemplateJs;
+	use Uneak\AssetsManagerBundle\Assets\AssetExternalCss;
+	use Uneak\AssetsManagerBundle\Assets\AssetExternalJs;
+	use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
 	use Uneak\AdminBundle\Form\AssetsAbstractType;
 	use Uneak\FlatSkinBundle\Form\DataTransformer\StringToJsonArrayTransformer;
 	use Uneak\FlatSkinBundle\Form\Transformer\DateTimeToPickerTransformer;
@@ -56,21 +56,15 @@
 		protected function _registerExternalFile(FormView $formView) {
 			$script = array();
 
-			$script["jquery_ui_widget_js"] = new ExternalJs("/vendor/jquery-file-upload/js/vendor/jquery.ui.widget.js");
-			$script["jquery_iframe_transport_js"] = new ExternalJs("/vendor/jquery-file-upload/js/jquery.iframe-transport.js", array("jquery_ui_widget_js"));
-			$script["jquery_fileupload_js"] = new ExternalJs("/vendor/jquery-file-upload/js/jquery.fileupload.js", array("jquery_iframe_transport_js"));
+			$script["jquery_ui_widget_js"] = new AssetExternalJs("/vendor/jquery-file-upload/js/vendor/jquery.ui.widget.js");
+			$script["jquery_iframe_transport_js"] = new AssetExternalJs("/vendor/jquery-file-upload/js/jquery.iframe-transport.js", array("jquery_ui_widget_js"));
+			$script["jquery_fileupload_js"] = new AssetExternalJs("/vendor/jquery-file-upload/js/jquery.fileupload.js", array("jquery_iframe_transport_js"));
 
-			$script["jquery_fileupload_css"] = new ExternalCss("/vendor/jquery-file-upload/css/jquery.fileupload.css", null, "", "stylesheet");
-			$script["jquery_fileupload_ui_css"] = new ExternalCss("/vendor/jquery-file-upload/css/jquery.fileupload-ui.css", array("jquery_fileupload_css"), "", "stylesheet");
-
-
-			return $script;
-		}
+			$script["jquery_fileupload_css"] = new AssetExternalCss("/vendor/jquery-file-upload/css/jquery.fileupload.css", null, "", "stylesheet");
+			$script["jquery_fileupload_ui_css"] = new AssetExternalCss("/vendor/jquery-file-upload/css/jquery.fileupload-ui.css", array("jquery_fileupload_css"), "", "stylesheet");
 
 
-		protected function _registerScript(FormView $formView) {
-			$script = array();
-			$script["script_filepicker"] = new ScriptFileTemplateJs("UneakFlatSkinBundle:Form:file_picker/file_picker_script.html.twig", null, array('item' => $formView));
+			$script["script_filepicker"] = new AssetInternalJs("UneakFlatSkinBundle:Form:file_picker/file_picker_script.html.twig", null, array('item' => $formView));
 
 			return $script;
 		}

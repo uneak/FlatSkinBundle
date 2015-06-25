@@ -2,10 +2,9 @@
 
 	namespace Uneak\FlatSkinBundle\Block\DataTable;
 
-	use Uneak\AdminBundle\Assets\ScriptFileTemplateJs;
-	use Uneak\AdminBundle\Assets\ScriptJs;
-	use Uneak\AdminBundle\Block\Block;
-	use Uneak\AdminBundle\Block\ScriptFileJs;
+	use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
+	use Uneak\BlocksManagerBundle\Blocks\ScriptFileJs;
 
 
 	class DataTableFilters extends Block {
@@ -22,7 +21,7 @@
 
 		public function _registerScript() {
 			$script = array();
-			$script["script_datatable_filter"] = new ScriptFileTemplateJs($this->scriptTemplate, array("script_datatable"), array('item' => $this));
+			$script["script_datatable_filter"] = new AssetInternalJs($this->scriptTemplate, array("script_datatable"), array('item' => $this));
 			return $script;
 		}
 

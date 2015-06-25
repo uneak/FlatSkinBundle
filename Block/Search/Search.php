@@ -2,7 +2,7 @@
 
 namespace Uneak\FlatSkinBundle\Block\Search;
 
-use Uneak\AdminBundle\Block\Block;
+use Uneak\BlocksManagerBundle\Blocks\Block;
 
 class Search extends Block {
 

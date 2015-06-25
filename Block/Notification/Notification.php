@@ -2,7 +2,7 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Notification;
 
-	use Uneak\AdminBundle\Block\Block;
+	use Uneak\BlocksManagerBundle\Blocks\Block;
 
 	class Notification extends Block {
 
