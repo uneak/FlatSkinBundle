@@ -3,9 +3,9 @@
 	namespace Uneak\FlatSkinBundle\Block\Component;
 
 	use Uneak\BlocksManagerBundle\Blocks\Component;
-	use Uneak\AssetsManagerBundle\Assets\AssetExternalCss;
-	use Uneak\AssetsManagerBundle\Assets\AssetExternalJs;
-	use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
+	use Uneak\AssetsManagerBundle\Assets\Css\AssetExternalCss;
+	use Uneak\AssetsManagerBundle\Assets\Js\AssetExternalJs;
+	use Uneak\AssetsManagerBundle\Assets\Js\AssetInternalJs;
 
 	class EasyPieChart extends Component {
 
@@ -32,22 +32,23 @@
 
 		}
 
-		public function _registerAssets(array &$assets, $parameters = null) {
+		public function buildAsset(AssetBuilder $builder, $parameters) {
 
-            $assets["easy_pie_chart_js"] = new AssetExternalJs(array(
-                "src" => "/bundles/uneakflatskin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"
-            ));
-            $assets["easy_pie_chart_css"] = new AssetExternalCss(array(
-                "href" => "/bundles/uneakflatskin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css",
-                "media" => "screen"
-            ));
-
-            $assets["script_easy_pie_chart"] = new AssetInternalJs(array(
-                "content" => "$(function() { $('#{{ item.uniqid }}').easyPieChart({{ item.jsArray | raw }}); });",
-                "parameters" => array('item' => $parameters)
-            ));
+			$builder
+				->add("easy_pie_chart_js", new AssetExternalJs(), array(
+					"src" => "/bundles/uneakflatskin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"
+				))
+				->add("easy_pie_chart_css", new AssetExternalCss(), array(
+					"href"  => "/bundles/uneakflatskin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css",
+					"media" => "screen"
+				))
+				->add("script_easy_pie_chart", new AssetInternalJs(), array(
+					"content"    => "$(function() { $('#{{ item.uniqid }}').easyPieChart({{ item.jsArray | raw }}); });",
+					"parameters" => array('item' => $parameters)
+				));
 
 		}
+
 
 		public function getPercent() {
 			return $this->percent;
@@ -55,9 +56,9 @@
 
 		public function setPercent($percent) {
 			$this->percent = $percent;
+
 			return $this;
 		}
-
 
 
 	}

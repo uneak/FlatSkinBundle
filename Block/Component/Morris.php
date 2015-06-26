@@ -3,8 +3,8 @@
 	namespace Uneak\FlatSkinBundle\Block\Component;
 
 	use Uneak\BlocksManagerBundle\Blocks\Component;
-	use Uneak\AssetsManagerBundle\Assets\AssetExternalCss;
-	use Uneak\AssetsManagerBundle\Assets\AssetExternalJs;
+	use Uneak\AssetsManagerBundle\Assets\Css\AssetExternalCss;
+	use Uneak\AssetsManagerBundle\Assets\Js\AssetExternalJs;
 
 	class Morris extends Component {
 
@@ -23,19 +23,21 @@
 
 		}
 
-		public function _registerAssets(array &$assets, $parameters = null) {
+		public function buildAsset(AssetBuilder $builder, $parameters) {
 
-            $assets["morris_js"] = new AssetExternalJs(array(
-                "src" => "/bundles/uneakflatskin/assets/morris.js-0.4.3/morris.min.js"
-            ));
-            $assets["raphael_js"] = new AssetExternalJs(array(
-                "src" => "/bundles/uneakflatskin/assets/morris.js-0.4.3/raphael-min.js",
-                "dependencies" => array("morris_js")
-            ));
-            $assets[] = new AssetExternalCss(array(
-                "href" => "/bundles/uneakflatskin/assets/morris.js-0.4.3/morris.css"
-            ));
+			$builder
+				->add("morris_js", new AssetExternalJs(), array(
+					"src" => "/bundles/uneakflatskin/assets/morris.js-0.4.3/morris.min.js"
+				))
+				->add("raphael_js", new AssetExternalJs(), array(
+					"src" => "/bundles/uneakflatskin/assets/morris.js-0.4.3/raphael-min.js",
+					"dependencies" => array("morris_js")
+				))
+				->add("", new AssetExternalCss(), array(
+					"href" => "/bundles/uneakflatskin/assets/morris.js-0.4.3/morris.css"
+				));
 
 		}
+
 
 	}

@@ -2,10 +2,11 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Component;
 
+	use Uneak\AssetsManagerBundle\Assets\AssetBuilder;
 	use Uneak\BlocksManagerBundle\Blocks\Component;
-	use Uneak\AssetsManagerBundle\Assets\AssetExternalCss;
-	use Uneak\AssetsManagerBundle\Assets\AssetExternalJs;
-	use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
+	use Uneak\AssetsManagerBundle\Assets\Css\AssetExternalCss;
+	use Uneak\AssetsManagerBundle\Assets\Js\AssetExternalJs;
+	use Uneak\AssetsManagerBundle\Assets\Js\AssetInternalJs;
 
 	class DataTable extends Component {
 
@@ -23,33 +24,34 @@
 			$this->scriptTemplate = "UneakFlatSkinBundle:Block:Component/script_datatable.html.twig";
 		}
 
-		public function _registerAssets(array &$assets, $parameters = null) {
+		public function buildAsset(AssetBuilder $builder, $parameters) {
 
-            $assets["jquery_dataTables_js"] = new AssetExternalJs(array(
-                "src" => "/bundles/uneakflatskin/assets/advanced-datatable/media/js/jquery.dataTables.js",
-            ));
-            $assets["dt_bootstrap_js"] = new AssetExternalJs(array(
-                "src" => "/bundles/uneakflatskin/assets/data-tables/DT_bootstrap.js",
-                "dependencies" => array("jquery_dataTables_js")
-            ));
-            $assets["dt_bootstrap_css"] = new AssetExternalCss(array(
-                "href" => "/bundles/uneakflatskin/assets/data-tables/DT_bootstrap.css",
-            ));
-            $assets["demo_table_css"] = new AssetExternalCss(array(
-                "href" => "/bundles/uneakflatskin/assets/advanced-datatable/media/css/demo_table.css",
-                "dependencies" => array("dt_bootstrap_css")
-            ));
-            $assets["demo_page_css"] = new AssetExternalCss(array(
-                "href" => "/bundles/uneakflatskin/assets/advanced-datatable/media/css/demo_page.css",
-                "dependencies" => array("demo_table_css")
-            ));
-
-            $assets["script_datatable"] = new AssetInternalJs(array(
-                "template" => $this->scriptTemplate,
-                "parameters" => array('item' => $parameters)
-            ));
+			$builder
+				->add("jquery_dataTables_js", new AssetExternalJs(), array(
+					"src" => "/bundles/uneakflatskin/assets/advanced-datatable/media/js/jquery.dataTables.js",
+				))
+				->add("dt_bootstrap_js", new AssetExternalJs(), array(
+					"src"          => "/bundles/uneakflatskin/assets/data-tables/DT_bootstrap.js",
+					"dependencies" => array("jquery_dataTables_js")
+				))
+				->add("dt_bootstrap_css", new AssetExternalCss(), array(
+					"href" => "/bundles/uneakflatskin/assets/data-tables/DT_bootstrap.css",
+				))
+				->add("demo_table_css", new AssetExternalCss(), array(
+					"href"         => "/bundles/uneakflatskin/assets/advanced-datatable/media/css/demo_table.css",
+					"dependencies" => array("dt_bootstrap_css")
+				))
+				->add("demo_page_css", new AssetExternalCss(), array(
+					"href"         => "/bundles/uneakflatskin/assets/advanced-datatable/media/css/demo_page.css",
+					"dependencies" => array("demo_table_css")
+				))
+				->add("script_datatable", new AssetInternalJs(), array(
+					"template"   => $this->scriptTemplate,
+					"parameters" => array('item' => $parameters)
+				));
 
 		}
+
 
 		public function getScriptTemplate() {
 			return $this->scriptTemplate;
@@ -57,6 +59,7 @@
 
 		public function setScriptTemplate($template) {
 			$this->scriptTemplate = $template;
+
 			return $this;
 		}
 
@@ -72,6 +75,7 @@
 		 */
 		public function setAjax($ajax) {
 			$this->ajax = $ajax;
+
 			return $this;
 		}
 
@@ -87,6 +91,7 @@
 		 */
 		public function setIDisplayLength($iDisplayLength) {
 			$this->iDisplayLength = $iDisplayLength;
+
 			return $this;
 		}
 
@@ -102,6 +107,7 @@
 		 */
 		public function setProcessing($processing) {
 			$this->processing = $processing;
+
 			return $this;
 		}
 
@@ -117,6 +123,7 @@
 		 */
 		public function setServerSide($serverSide) {
 			$this->serverSide = $serverSide;
+
 			return $this;
 		}
 
@@ -132,13 +139,14 @@
 		 */
 		public function setStateSave($stateSave) {
 			$this->stateSave = $stateSave;
+
 			return $this;
 		}
 
 
-
 		public function addColumn($column) {
 			array_push($this->columns, $column);
+
 			return $this;
 		}
 
@@ -147,6 +155,7 @@
 			if ($key !== false) {
 				array_splice($this->columns, $key, 1);
 			}
+
 			return $this;
 		}
 
@@ -156,6 +165,7 @@
 
 		public function setColumns($columns) {
 			$this->columns = $columns;
+
 			return $this;
 		}
 

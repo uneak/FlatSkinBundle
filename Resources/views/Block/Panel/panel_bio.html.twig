@@ -14,7 +14,7 @@
 					{% set cmpt = cmpt + 1 %}
 				{% endif %}
 
-				<div class="col-md-{{ 12 / item.columns }}{% if item.columns > 1 %} multi-column{% endif %}">{{ render_block(block) }}</div>
+				<div class="col-md-{{ 12 / item.columns }}{% if item.columns > 1 %} multi-column{% endif %}">{{ renderBlock(block) }}</div>
 
 				{% if loop.last and loop.index is not divisibleby(item.columns) %}
 					{% for n in range(low=item.columns - (loop.index % item.columns), high=1, step=-1) %}

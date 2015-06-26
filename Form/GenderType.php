@@ -6,12 +6,9 @@
 	use Symfony\Component\Form\FormView;
 	use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 	use Symfony\Component\Validator\Constraints\Collection;
-	use Uneak\AssetsManagerBundle\Assets\AssetExternalCss;
-	use Uneak\AssetsManagerBundle\Assets\AssetExternalJs;
-	use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
-	use Uneak\AdminBundle\Form\AssetsAbstractType;
+	use Uneak\FormsManagerBundle\Forms\AssetsComponentType;
 
-	class GenderType extends AssetsAbstractType {
+	class GenderType extends AssetsComponentType {
 
 		public function setDefaultOptions(OptionsResolverInterface $resolver) {
 			$resolver->setDefaults(array(

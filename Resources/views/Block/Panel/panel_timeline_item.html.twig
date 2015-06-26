@@ -11,7 +11,7 @@
 
 				<p>{{ item.description }}</p>
 				{% for block in item.blocks %}
-					{{ render_block(block) }}
+					{{ renderBlock(block) }}
 					{#{% include block.template with { 'item': block, 'index': loop.index } %}#}
 				{% endfor %}
 			</div>

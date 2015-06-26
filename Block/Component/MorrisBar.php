@@ -2,7 +2,7 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Component;
 
-	use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
+	use Uneak\AssetsManagerBundle\Assets\Js\AssetInternalJs;
 
 	class MorrisBar extends MorrisLine {
 

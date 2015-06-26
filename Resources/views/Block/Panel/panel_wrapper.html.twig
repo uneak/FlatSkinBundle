@@ -10,7 +10,7 @@
 	</header>
 	<div class="panel-body">
 		{% for block in item.blocks %}
-			{{ render_block(block) }}
+			{{ renderBlock(block) }}
 			{#{% include block.template with { 'item': block, 'index': loop.index } %}#}
 		{% endfor %}
 	</div>

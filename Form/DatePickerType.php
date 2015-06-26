@@ -7,17 +7,16 @@
 	use Symfony\Component\Form\FormBuilderInterface;
 	use Symfony\Component\Form\FormInterface;
 	use Symfony\Component\Form\FormView;
-	use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
-	use Symfony\Component\OptionsResolver\Options;
 	use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 	use Symfony\Component\Validator\Constraints\Collection;
-	use Uneak\AssetsManagerBundle\Assets\AssetExternalCss;
-	use Uneak\AssetsManagerBundle\Assets\AssetExternalJs;
-	use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
-	use Uneak\AdminBundle\Form\AssetsAbstractType;
+	use Uneak\AssetsManagerBundle\Assets\AssetBuilder;
+	use Uneak\AssetsManagerBundle\Assets\Css\AssetExternalCss;
+	use Uneak\AssetsManagerBundle\Assets\Js\AssetExternalJs;
+	use Uneak\AssetsManagerBundle\Assets\Js\AssetInternalJs;
 	use Uneak\FlatSkinBundle\Form\Transformer\DateTimeToPickerTransformer;
+	use Uneak\FormsManagerBundle\Forms\AssetsComponentType;
 
-	class DatePickerType extends AssetsAbstractType {
+	class DatePickerType extends AssetsComponentType {
 
 		private $_formatConvertRules = array(
 			// year
@@ -94,50 +93,51 @@
 		}
 
 
+		public function buildAsset(AssetBuilder $builder, $parameters) {
+
+			$builder
+				->add("moment_js", new AssetExternalJs(), array(
+					"src" => "/vendor/moment/moment.js"
+				))
+				->add("bootstrap_datetimepicker_js", new AssetExternalJs(), array(
+					"src"          => "/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
+					"dependencies" => array("bootstrap_datepicker_js")
+				))
+				->add("bootstrap_datetimepicker_css", new AssetExternalCss(), array(
+					"href" => "/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"
+				))
+				->add("script_datetimepicker", new AssetInternalJs(), array(
+					"template"   => "UneakFlatSkinBundle:Form:date_picker/date_picker_script.html.twig",
+					"parameters" => array('item' => $parameters)
+				));
+
+			if (isset($parameters->vars["options"]["locale"])) {
+
+				$builder
+					->add("moment_language_js", new AssetExternalJs(), array(
+						"src"          => "/vendor/moment/locale/" . $parameters->vars["options"]["locale"] . ".js",
+						"dependencies" => array("moment_js"),
+						"charset"      => "UTF-8"
+					))
+					->add("bootstrap_datepicker_js", new AssetExternalJs(), array(
+						"src"          => "/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js",
+						"dependencies" => array("moment_language_js")
+					));
+
+			} else {
+
+				$builder->add("bootstrap_datepicker_js", new AssetExternalJs(), array(
+					"src"          => "/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js",
+					"dependencies" => array("moment_js")
+				));
+
+			}
+
+		}
+
 		public function getTheme() {
 			return "UneakFlatSkinBundle:Form:date_picker/date_picker.html.twig";
 		}
-
-
-		protected function _registerAssets(array &$assets, $parameters = null) {
-
-            $assets["moment_js"] = new AssetExternalJs(array(
-                "src" => "/vendor/moment/moment.js"
-            ));
-
-			if (isset($parameters->vars["options"]["locale"])) {
-                $assets["moment_language_js"] = new AssetExternalJs(array(
-                    "src" => "/vendor/moment/locale/" . $parameters->vars["options"]["locale"] . ".js",
-                    "dependencies" => array("moment_js"),
-                    "charset" => "UTF-8"
-                ));
-                $assets["bootstrap_datepicker_js"] = new AssetExternalJs(array(
-                    "src" => "/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js",
-                    "dependencies" => array("moment_language_js")
-                ));
-			} else {
-                $assets["bootstrap_datepicker_js"] = new AssetExternalJs(array(
-                    "src" => "/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js",
-                    "dependencies" => array("moment_js")
-                ));
-			}
-
-            $assets["bootstrap_datetimepicker_js"] = new AssetExternalJs(array(
-                "src" => "/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
-                "dependencies" => array("bootstrap_datepicker_js")
-            ));
-
-            $assets["bootstrap_datetimepicker_css"] = new AssetExternalCss(array(
-                "href" => "/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"
-            ));
-
-            $assets["script_datetimepicker"] = new AssetInternalJs(array(
-                "template" => "UneakFlatSkinBundle:Form:date_picker/date_picker_script.html.twig",
-                "parameters" => array('item' => $parameters)
-            ));
-
-		}
-
 
 		public function getParent() {
 			return 'datetime';

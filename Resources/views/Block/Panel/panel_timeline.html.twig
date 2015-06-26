@@ -7,7 +7,7 @@
 
 		<div class="timeline">
 			{% for block in item.blocks %}
-				{{ render_block(block, null, { 'index': loop.index }) }}
+				{{ renderBlock(block, null, { 'index': loop.index }) }}
 			{% endfor %}
 		</div>
 

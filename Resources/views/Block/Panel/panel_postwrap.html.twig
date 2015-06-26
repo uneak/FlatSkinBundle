@@ -8,19 +8,19 @@
 
 				<div class="desk yellow row" style="width:100%">
 					<div class="col-md-5">
-						{{ render_block(item.blocks.0) }}
+						{{ renderBlock(item.blocks.0) }}
 					</div>
 					<div class="col-md-7">
 						{% if item.blocks|length > 1 %}
 							{% for i in 1..item.blocks|length -1 %}
-								{{ render_block(item.blocks[i]) }}
+								{{ renderBlock(item.blocks[i]) }}
 							{% endfor %}
 						{% endif %}
 					</div>
 				</div>
 				<div class="row" style="width:100%">
 					<div class="col-md-12">
-						{{ render_block(item.menu) }}
+						{{ renderBlock(item.menu) }}
 					</div>
 				</div>
 			</div>

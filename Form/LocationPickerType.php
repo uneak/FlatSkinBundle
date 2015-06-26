@@ -13,14 +13,14 @@
 	use Symfony\Component\OptionsResolver\Options;
 	use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 	use Symfony\Component\Validator\Constraints\Collection;
-	use Uneak\AssetsManagerBundle\Assets\AssetExternalCss;
-	use Uneak\AssetsManagerBundle\Assets\AssetExternalJs;
-	use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
-	use Uneak\AdminBundle\Form\AssetsAbstractType;
+	use Uneak\AssetsManagerBundle\Assets\AssetBuilder;
+	use Uneak\AssetsManagerBundle\Assets\Js\AssetExternalJs;
+	use Uneak\AssetsManagerBundle\Assets\Js\AssetInternalJs;
 	use Uneak\FlatSkinBundle\Form\DataTransformer\StringToJsonArrayTransformer;
 	use Uneak\FlatSkinBundle\Form\Transformer\DateTimeToPickerTransformer;
+	use Uneak\FormsManagerBundle\Forms\AssetsComponentType;
 
-	class LocationPickerType extends AssetsAbstractType {
+	class LocationPickerType extends AssetsComponentType {
 
 
 		public function buildForm(FormBuilderInterface $builder, array $options) {
@@ -64,26 +64,28 @@
 		}
 
 
-		public function getTheme() {
-			return "UneakFlatSkinBundle:Form:location_picker/location_picker.html.twig";
+
+
+
+		public function buildAsset(AssetBuilder $builder, $parameters) {
+
+			$builder
+				->add("google_map_js", new AssetExternalJs(), array(
+					"src" => "http://maps.google.com/maps/api/js?sensor=false&libraries=places"
+				))
+				->add("locationpicker_js", new AssetExternalJs(), array(
+					"src" => "/vendor/jquery-locationpicker-plugin/dist/locationpicker.jquery.js",
+					"dependencies" => array("google_map_js")
+				))
+				->add("script_locationpicker", new AssetInternalJs(), array(
+					"template" => "UneakFlatSkinBundle:Form:location_picker/location_picker_script.html.twig",
+					"parameters" => array('item' => $parameters)
+				));
+
 		}
 
-
-		protected function _registerAssets(array &$assets, $parameters = null) {
-
-            $assets["google_map_js"] = new AssetExternalJs(array(
-                "src" => "http://maps.google.com/maps/api/js?sensor=false&libraries=places"
-            ));
-            $assets["locationpicker_js"] = new AssetExternalJs(array(
-                "src" => "/vendor/jquery-locationpicker-plugin/dist/locationpicker.jquery.js",
-                "dependencies" => array("google_map_js")
-            ));
-
-            $assets["script_locationpicker"] = new AssetInternalJs(array(
-                "src" => "UneakFlatSkinBundle:Form:location_picker/location_picker_script.html.twig",
-                "parameters" => array('item' => $parameters)
-            ));
-
+		public function getTheme() {
+			return "UneakFlatSkinBundle:Form:location_picker/location_picker.html.twig";
 		}
 
 

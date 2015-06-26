@@ -9,7 +9,7 @@
 			<div class="media-body">
 				<h4> {{ item.title | raw }}{% if item.subtitle %} <span class="text-muted small"> - {{ item.subtitle | raw }}</span>{% endif %}</h4>
 
-				{{ render_block(item.menu) }}
+				{{ renderBlock(item.menu) }}
 
 				<address>
 					{{ item.description | raw }}

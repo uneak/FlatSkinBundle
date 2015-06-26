@@ -2,7 +2,7 @@
 
 	namespace Uneak\FlatSkinBundle\Block\DataTable;
 
-	use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
+	use Uneak\AssetsManagerBundle\Assets\Js\AssetInternalJs;
 	use Uneak\BlocksManagerBundle\Blocks\Block;
 	use Uneak\BlocksManagerBundle\Blocks\ScriptFileJs;
 

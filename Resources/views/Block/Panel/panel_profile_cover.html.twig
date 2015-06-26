@@ -13,7 +13,7 @@
 		</div>
 		<a href="#" class="fb-user-mail">{{ item.description |raw }}</a>
 		{% for block in item.blocks %}
-			<p>{{ render_block(block, null, { 'index': loop.index }) }}</p>
+			<p>{{ renderBlock(block, null, { 'index': loop.index }) }}</p>
 		{% endfor %}
 	</div>
 </section>

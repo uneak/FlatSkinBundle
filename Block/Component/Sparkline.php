@@ -3,8 +3,8 @@
 	namespace Uneak\FlatSkinBundle\Block\Component;
 
 	use Uneak\BlocksManagerBundle\Blocks\Component;
-	use Uneak\AssetsManagerBundle\Assets\AssetExternalJs;
-	use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
+	use Uneak\AssetsManagerBundle\Assets\Js\AssetExternalJs;
+	use Uneak\AssetsManagerBundle\Assets\Js\AssetInternalJs;
 
 	class Sparkline extends Component {
 
@@ -35,18 +35,19 @@
 
 		}
 
-		public function _registerAssets(array &$assets, $parameters = null) {
+		public function buildAsset(AssetBuilder $builder, $parameters) {
 
-            $assets["sparkline_js"] = new AssetExternalJs(array(
-                "src" => "/bundles/uneakflatskin/js/jquery.sparkline.js"
-            ));
-
-            $assets["script_sparkline"] = new AssetInternalJs(array(
-                "src" => "$(function() { $('#{{ item.uniqid }}').sparkline({{ item.values | json_encode() }}, {{ item.jsArray | raw }}); });",
-                "parameters" => array('item' => $parameters)
-            ));
+			$builder
+				->add("sparkline_js", new AssetExternalJs(), array(
+					"src" => "/bundles/uneakflatskin/js/jquery.sparkline.js"
+				))
+				->add("script_sparkline", new AssetInternalJs(), array(
+					"src" => "$(function() { $('#{{ item.uniqid }}').sparkline({{ item.values | json_encode() }}, {{ item.jsArray | raw }}); });",
+					"parameters" => array('item' => $parameters)
+				));
 
 		}
+
 
 		public function getValues() {
 			return $this->values;

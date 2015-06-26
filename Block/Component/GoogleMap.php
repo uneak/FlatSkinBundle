@@ -2,8 +2,8 @@
 
 namespace Uneak\FlatSkinBundle\Block\Component;
 
-use Uneak\AssetsManagerBundle\Assets\AssetExternalJs;
-use Uneak\AssetsManagerBundle\Assets\AssetInternalJs;
+use Uneak\AssetsManagerBundle\Assets\Js\AssetExternalJs;
+use Uneak\AssetsManagerBundle\Assets\Js\AssetInternalJs;
 use Uneak\BlocksManagerBundle\Blocks\Component;
 
 class GoogleMap extends Component
@@ -19,18 +19,20 @@ class GoogleMap extends Component
 
     }
 
-    public function _registerAssets(array &$assets, $parameters = null)
-    {
 
-        $assets["google_map_js"] = new AssetExternalJs(array(
-            "src" => "http://maps.google.com/maps/api/js?sensor=false&libraries=places"
-        ));
-        $assets["script_google_map"] = new AssetInternalJs(array(
-            "src" => "UneakFlatSkinBundle:Block:GoogleMap/googlemap_script.html.twig",
-            "parameters" => array('item' => $parameters)
-        ));
+	public function buildAsset(AssetBuilder $builder, $parameters) {
 
-    }
+		$builder
+			->add("google_map_js", new AssetExternalJs(), array(
+				"src" => "http://maps.google.com/maps/api/js?sensor=false&libraries=places"
+			))
+			->add("script_google_map", new AssetInternalJs(), array(
+				"src" => "UneakFlatSkinBundle:Block:GoogleMap/googlemap_script.html.twig",
+				"parameters" => array('item' => $parameters)
+			));
+
+	}
+
 
     /**
      * @return mixed
