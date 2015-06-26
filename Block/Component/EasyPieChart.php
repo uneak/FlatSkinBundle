@@ -32,14 +32,21 @@
 
 		}
 
-		public function _registerAssets() {
-			$script = array();
-			$script["easy_pie_chart_js"] = new AssetExternalJs("/bundles/uneakflatskin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js");
-			$script["easy_pie_chart_css"] = new AssetExternalCss("/bundles/uneakflatskin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css", null, "screen", "stylesheet");
+		public function _registerAssets(array &$assets, $parameters = null) {
 
-			$script_ = "$(function() { $('#{{ item.uniqid }}').easyPieChart({{ item.jsArray | raw }}); });";
-			$script["script_easy_pie_chart"] = new AssetInternalJs($script_, null, array('item' => $this));
-			return $script;
+            $assets["easy_pie_chart_js"] = new AssetExternalJs(array(
+                "src" => "/bundles/uneakflatskin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"
+            ));
+            $assets["easy_pie_chart_css"] = new AssetExternalCss(array(
+                "href" => "/bundles/uneakflatskin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css",
+                "media" => "screen"
+            ));
+
+            $assets["script_easy_pie_chart"] = new AssetInternalJs(array(
+                "content" => "$(function() { $('#{{ item.uniqid }}').easyPieChart({{ item.jsArray | raw }}); });",
+                "parameters" => array('item' => $parameters)
+            ));
+
 		}
 
 		public function getPercent() {

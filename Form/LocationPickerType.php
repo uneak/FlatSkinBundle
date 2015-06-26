@@ -69,14 +69,21 @@
 		}
 
 
-		protected function _registerAssets(FormView $formView) {
-			$script = array();
-			$script["google_map_js"] = new AssetExternalJs("http://maps.google.com/maps/api/js?sensor=false&libraries=places");
-			$script["locationpicker_js"] = new AssetExternalJs("/vendor/jquery-locationpicker-plugin/dist/locationpicker.jquery.js", array("google_map_js"));
+		protected function _registerAssets(array &$assets, $parameters = null) {
 
-			$script["script_locationpicker"] = new AssetInternalJs("UneakFlatSkinBundle:Form:location_picker/location_picker_script.html.twig", null, array('item' => $formView));
+            $assets["google_map_js"] = new AssetExternalJs(array(
+                "src" => "http://maps.google.com/maps/api/js?sensor=false&libraries=places"
+            ));
+            $assets["locationpicker_js"] = new AssetExternalJs(array(
+                "src" => "/vendor/jquery-locationpicker-plugin/dist/locationpicker.jquery.js",
+                "dependencies" => array("google_map_js")
+            ));
 
-			return $script;
+            $assets["script_locationpicker"] = new AssetInternalJs(array(
+                "src" => "UneakFlatSkinBundle:Form:location_picker/location_picker_script.html.twig",
+                "parameters" => array('item' => $parameters)
+            ));
+
 		}
 
 

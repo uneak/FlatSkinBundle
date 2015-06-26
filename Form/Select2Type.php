@@ -115,21 +115,34 @@ abstract class Select2Type extends AssetsAbstractType
     }
 
 
-    protected function _registerAssets(FormView $formView)
+    protected function _registerAssets(array &$assets, $parameters = null)
     {
-        $script = array();
-        $script["select2_js"] = new AssetExternalJs("/vendor/select2/select2.js");
 
-        if (isset($formView->vars["options"]["language"])) {
-            $script["select2_language_js"] = new AssetExternalJs("/vendor/select2/select2_locale_" . $formView->vars["options"]["language"] . ".js", array("select2_js"), "", "text/javascript", "script", "UTF-8");
+        $assets["select2_js"] = new AssetExternalJs(array(
+            "src" => "/vendor/select2/select2.js"
+        ));
+
+        if (isset($parameters->vars["options"]["language"])) {
+            $assets["select2_language_js"] = new AssetExternalJs(array(
+                "src" => "/vendor/select2/select2_locale_" . $parameters->vars["options"]["language"] . ".js",
+                "dependencies" => array("select2_js"),
+                "charset" => "UTF-8"
+            ));
         }
 
-        $script["select2_css"] = new AssetExternalCss("/vendor/select2/select2.css", null, "", "stylesheet");
-        $script["select2_bootstrap_css"] = new AssetExternalCss("/vendor/select2-bootstrap-css/select2-bootstrap.css", array("select2_css"), "", "stylesheet");
+        $assets["select2_css"] = new AssetExternalCss(array(
+            "href" => "/vendor/select2/select2.css"
+        ));
+        $assets["select2_bootstrap_css"] = new AssetExternalCss(array(
+            "href" => "/vendor/select2-bootstrap-css/select2-bootstrap.css",
+            "dependencies" => array("select2_css")
+        ));
 
-        $script["script_select2"] = new AssetInternalJs("UneakFlatSkinBundle:Form:select2/select2_script.html.twig", null, array('item' => $formView));
+        $assets["script_select2"] = new AssetInternalJs(array(
+            "template" => "UneakFlatSkinBundle:Form:select2/select2_script.html.twig",
+            "dependencies" => array('item' => $parameters)
+        ));
 
-        return $script;
     }
 
 

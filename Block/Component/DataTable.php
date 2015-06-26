@@ -23,17 +23,32 @@
 			$this->scriptTemplate = "UneakFlatSkinBundle:Block:Component/script_datatable.html.twig";
 		}
 
-		public function _registerAssets() {
-			$script = array();
-			$script["jquery_dataTables_js"] = new AssetExternalJs("/bundles/uneakflatskin/assets/advanced-datatable/media/js/jquery.dataTables.js", null, "", "text/javascript", "script");
-			$script["dt_bootstrap_js"] = new AssetExternalJs("/bundles/uneakflatskin/assets/data-tables/DT_bootstrap.js", array("jquery_dataTables_js"), "", "text/javascript", "script");
+		public function _registerAssets(array &$assets, $parameters = null) {
 
-			$script["dt_bootstrap_css"] = new AssetExternalCss("/bundles/uneakflatskin/assets/data-tables/DT_bootstrap.css", null, "", "stylesheet");
-			$script["demo_table_css"] = new AssetExternalCss("/bundles/uneakflatskin/assets/advanced-datatable/media/css/demo_table.css", array("dt_bootstrap_css"), "", "stylesheet");
-			$script["demo_page_css"] = new AssetExternalCss("/bundles/uneakflatskin/assets/advanced-datatable/media/css/demo_page.css", array("demo_table_css"), "", "stylesheet");
+            $assets["jquery_dataTables_js"] = new AssetExternalJs(array(
+                "src" => "/bundles/uneakflatskin/assets/advanced-datatable/media/js/jquery.dataTables.js",
+            ));
+            $assets["dt_bootstrap_js"] = new AssetExternalJs(array(
+                "src" => "/bundles/uneakflatskin/assets/data-tables/DT_bootstrap.js",
+                "dependencies" => array("jquery_dataTables_js")
+            ));
+            $assets["dt_bootstrap_css"] = new AssetExternalCss(array(
+                "href" => "/bundles/uneakflatskin/assets/data-tables/DT_bootstrap.css",
+            ));
+            $assets["demo_table_css"] = new AssetExternalCss(array(
+                "href" => "/bundles/uneakflatskin/assets/advanced-datatable/media/css/demo_table.css",
+                "dependencies" => array("dt_bootstrap_css")
+            ));
+            $assets["demo_page_css"] = new AssetExternalCss(array(
+                "href" => "/bundles/uneakflatskin/assets/advanced-datatable/media/css/demo_page.css",
+                "dependencies" => array("demo_table_css")
+            ));
 
-			$script["script_datatable"] = new AssetInternalJs($this->scriptTemplate, null, array('item' => $this));
-			return $script;
+            $assets["script_datatable"] = new AssetInternalJs(array(
+                "template" => $this->scriptTemplate,
+                "parameters" => array('item' => $parameters)
+            ));
+
 		}
 
 		public function getScriptTemplate() {

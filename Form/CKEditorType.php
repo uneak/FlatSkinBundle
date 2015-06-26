@@ -56,13 +56,17 @@
 //		}
 
 
-		protected function _registerAssets(FormView $formView) {
-			$script = array();
-			$script["ckeditor_js"] = new AssetExternalJs("/vendor/ckeditor/ckeditor.js");
+		protected function _registerAssets(array &$assets, $parameters = null) {
 
-			$script["script_ckeditor"] = new AssetInternalJs("UneakFlatSkinBundle:Form:ckeditor/ckeditor_script.html.twig", null, array('item' => $formView));
+            $assets["ckeditor_js"] = new AssetExternalJs(array(
+                "src" => "/vendor/ckeditor/ckeditor.js"
+            ));
 
-			return $script;
+            $assets["script_ckeditor"] = new AssetInternalJs(array(
+                "template" => "UneakFlatSkinBundle:Form:ckeditor/ckeditor_script.html.twig",
+                "parameters" => array('item' => $parameters)
+            ));
+
 		}
 
 

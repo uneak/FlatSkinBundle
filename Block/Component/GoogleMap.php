@@ -19,13 +19,17 @@ class GoogleMap extends Component
 
     }
 
-    public function _registerAssets()
+    public function _registerAssets(array &$assets, $parameters = null)
     {
-        $script = array();
-        $script["google_map_js"] = new AssetExternalJs("http://maps.google.com/maps/api/js?sensor=false&libraries=places");
 
-        $script["script_google_map"] = new AssetInternalJs("UneakFlatSkinBundle:Block:GoogleMap/googlemap_script.html.twig", null, array('item' => $this));
-        return $script;
+        $assets["google_map_js"] = new AssetExternalJs(array(
+            "src" => "http://maps.google.com/maps/api/js?sensor=false&libraries=places"
+        ));
+        $assets["script_google_map"] = new AssetInternalJs(array(
+            "src" => "UneakFlatSkinBundle:Block:GoogleMap/googlemap_script.html.twig",
+            "parameters" => array('item' => $parameters)
+        ));
+
     }
 
     /**

@@ -35,13 +35,17 @@
 
 		}
 
-		public function _registerAssets() {
-			$script = array();
-			$script["sparkline_js"] = new AssetExternalJs("/bundles/uneakflatskin/js/jquery.sparkline.js");
+		public function _registerAssets(array &$assets, $parameters = null) {
 
-			$script_ = "$(function() { $('#{{ item.uniqid }}').sparkline({{ item.values | json_encode() }}, {{ item.jsArray | raw }}); });";
-			$script["script_sparkline"] = new AssetInternalJs($script_, null, array('item' => $this));
-			return $script;
+            $assets["sparkline_js"] = new AssetExternalJs(array(
+                "src" => "/bundles/uneakflatskin/js/jquery.sparkline.js"
+            ));
+
+            $assets["script_sparkline"] = new AssetInternalJs(array(
+                "src" => "$(function() { $('#{{ item.uniqid }}').sparkline({{ item.values | json_encode() }}, {{ item.jsArray | raw }}); });",
+                "parameters" => array('item' => $parameters)
+            ));
+
 		}
 
 		public function getValues() {

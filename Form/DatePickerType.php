@@ -99,23 +99,43 @@
 		}
 
 
-		protected function _registerAssets(FormView $formView) {
-			$script = array();
-			$script["moment_js"] = new AssetExternalJs("/vendor/moment/moment.js");
+		protected function _registerAssets(array &$assets, $parameters = null) {
 
-			if (isset($formView->vars["options"]["locale"])) {
-				$script["moment_language_js"] = new AssetExternalJs("/vendor/moment/locale/" . $formView->vars["options"]["locale"] . ".js", array("moment_js"), "", "text/javascript", "script", "UTF-8");
-				$script["bootstrap_datepicker_js"] = new AssetExternalJs("/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js", array("moment_language_js"));
+            $assets["moment_js"] = new AssetExternalJs(array(
+                "src" => "/vendor/moment/moment.js"
+            ));
+
+			if (isset($parameters->vars["options"]["locale"])) {
+                $assets["moment_language_js"] = new AssetExternalJs(array(
+                    "src" => "/vendor/moment/locale/" . $parameters->vars["options"]["locale"] . ".js",
+                    "dependencies" => array("moment_js"),
+                    "charset" => "UTF-8"
+                ));
+                $assets["bootstrap_datepicker_js"] = new AssetExternalJs(array(
+                    "src" => "/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js",
+                    "dependencies" => array("moment_language_js")
+                ));
 			} else {
-				$script["bootstrap_datepicker_js"] = new AssetExternalJs("/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js", array("moment_js"));
+                $assets["bootstrap_datepicker_js"] = new AssetExternalJs(array(
+                    "src" => "/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js",
+                    "dependencies" => array("moment_js")
+                ));
 			}
 
-			$script["bootstrap_datetimepicker_js"] = new AssetExternalJs("/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js", array("bootstrap_datepicker_js"));
-			$script["bootstrap_datetimepicker_css"] = new AssetExternalCss("/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css", null, "", "stylesheet");
+            $assets["bootstrap_datetimepicker_js"] = new AssetExternalJs(array(
+                "src" => "/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
+                "dependencies" => array("bootstrap_datepicker_js")
+            ));
 
-			$script["script_datetimepicker"] = new AssetInternalJs("UneakFlatSkinBundle:Form:date_picker/date_picker_script.html.twig", null, array('item' => $formView));
+            $assets["bootstrap_datetimepicker_css"] = new AssetExternalCss(array(
+                "href" => "/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"
+            ));
 
-			return $script;
+            $assets["script_datetimepicker"] = new AssetInternalJs(array(
+                "template" => "UneakFlatSkinBundle:Form:date_picker/date_picker_script.html.twig",
+                "parameters" => array('item' => $parameters)
+            ));
+
 		}
 
 

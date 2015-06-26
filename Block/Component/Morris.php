@@ -23,12 +23,19 @@
 
 		}
 
-		public function _registerAssets() {
-			$script = array();
-			$script["morris_js"] = new AssetExternalJs("/bundles/uneakflatskin/assets/morris.js-0.4.3/morris.min.js");
-			$script["raphael_js"] = new AssetExternalJs("/bundles/uneakflatskin/assets/morris.js-0.4.3/raphael-min.js", array("morris_js"));
-			$script[] = new AssetExternalCss("/bundles/uneakflatskin/assets/morris.js-0.4.3/morris.css", null, "", "stylesheet");
-			return $script;
+		public function _registerAssets(array &$assets, $parameters = null) {
+
+            $assets["morris_js"] = new AssetExternalJs(array(
+                "src" => "/bundles/uneakflatskin/assets/morris.js-0.4.3/morris.min.js"
+            ));
+            $assets["raphael_js"] = new AssetExternalJs(array(
+                "src" => "/bundles/uneakflatskin/assets/morris.js-0.4.3/raphael-min.js",
+                "dependencies" => array("morris_js")
+            ));
+            $assets[] = new AssetExternalCss(array(
+                "href" => "/bundles/uneakflatskin/assets/morris.js-0.4.3/morris.css"
+            ));
+
 		}
 
 	}
