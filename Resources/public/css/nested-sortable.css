@@ -1,0 +1,69 @@
+.placeholder {
+    outline: 1px dashed #ff766c;
+}
+
+.mjs-nestedSortable-error {
+    background: #fbe3e4;
+    border-color: transparent;
+}
+
+.sortable.ui-sortable > li {
+    padding: 0px !important;
+    position: relative;
+    background: transparent;
+    margin-bottom: 0px;
+    border-bottom: none !important;
+}
+ul.sortable ul {
+    padding-left: 25px;
+}
+
+ul.sortable,
+ul.sortable ul {
+    list-style-type: none;
+}
+
+
+
+
+.sortable li > div {
+    background: #f9f9f9 !important;
+    /*border: 1px solid #ddd;*/
+    border-left: 1px solid #ff766c;
+    color: #89817f !important;
+
+    cursor: move;
+    margin: 2px;
+    padding: 10px;
+
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+
+}
+
+li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
+    border-color: #999;
+}
+
+.sortable .disclose, .sortable .edit {
+    cursor: pointer;
+    width: 20px;
+}
+
+.sortable .edit {
+}
+
+
+.sortable li.mjs-nestedSortable-collapsed > ul {
+    display: none;
+}
+
+.sortable li.mjs-nestedSortable-branch > div > .disclose {
+    display: inline-block;
+}
+
+.sortable span.ui-icon {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}

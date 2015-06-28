@@ -1,0 +1,73 @@
+<script type="text/javascript">
+
+    $().ready(function(){
+        var ns = $("#{{ item.uniqid }}").nestedSortable({
+            forcePlaceholderSize: true,
+            listType: 'ul',
+            handle: 'div',
+            helper:	'clone',
+            items: 'li',
+            opacity: .6,
+            placeholder: 'placeholder',
+            revert: 250,
+            tabSize: 25,
+            tolerance: 'pointer',
+            toleranceElement: '> div',
+            rootID: '{% if item.menu | length %}{{ item.menu[0].id }}{% endif %}',
+            maxLevels: 4,
+            isTree: true,
+            expandOnHover: 700,
+            startCollapsed: false,
+            stop: function(event, ui) {
+                var data = {'data': $(this).nestedSortable("toArray")};
+                console.log(data);
+                $.ajax({
+                    'url': '{{ path('_reorderNavigationMenu') }}',
+                    type: 'POST',
+                    data: data,
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log(data);
+                    }
+                });
+            }
+
+        });
+
+        $('.sortable .disclose').on('click', function() {
+            $(this).closest('li').toggleClass('mjs-nestedSortable-collapsed').toggleClass('mjs-nestedSortable-expanded');
+            $(this).toggleClass('fa-chevron-up').toggleClass('fa-chevron-down');
+        });
+
+
+        $('.deleteMenu').click(function(){
+            var id = $(this).attr('data-id');
+            $('#menuItem_'+id).remove();
+        });
+
+
+        $('#{{ item.uniqid }}_add').click(function(e){
+
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                data: "data={% if item.menu | length %}{{ item.menu[0].id }}{% endif %}",
+                url: "{{ path('_addNavigationMenu') }}",
+                success: function(data) {
+                    if (data != '') {
+                        console.log(data);
+                        var $menu = $('<li id="menuItem_'+data['id']+'">{% spaceless %}{% include "UneakFlatSkinBundle:Block:NestedSortable/nested_sortable_item.html.twig" with {"title": "Nouveau"} %}{% endspaceless %}</li>');
+                        $menu.find('.itemTitle').text(data['label']);
+                        $("#{{ item.uniqid }}").append($menu);
+                        console.log($menu);
+
+                    } else {
+                        {#$('#{{ item.children.section.vars.id }}').html('<em>No item result</em>');#}
+                    }
+                }
+            });
+
+        });
+    });
+
+</script>

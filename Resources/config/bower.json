@@ -8,6 +8,7 @@
 		"select2": "latest",
         "select2-bootstrap-css": "latest",
         "ckeditor": "latest",
-        "bootstrapck4-skin": "latest"
+        "bootstrapck4-skin": "latest",
+        "nestedSortable": "https://github.com/ilikenwf/nestedSortable.git#2.0alpha"
 	}
 }
