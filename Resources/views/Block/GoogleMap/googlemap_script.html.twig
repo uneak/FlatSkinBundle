@@ -2,13 +2,41 @@
 
     $(document).ready(function () {
 
+        var geocoder = new google.maps.Geocoder();
         var latlng = new google.maps.LatLng({{ item.getMeta("latitude") }}, {{ item.getMeta("longitude") }});
+        var mapOptions = {
+            zoom: 13,
+            center: latlng,
+            disableDefaultUI: true,
+            draggable: false,
+            scrollwheel: false
+        }
 
-        var map = new google.maps.Map(document.getElementById("{{ item.uniqid }}"), {
-                center: latlng,
-                zoom: 13
+        var map = new google.maps.Map(document.getElementById("{{ item.uniqid }}"), mapOptions);
+        var address = "Guadeloupe, Bouillante";
+
+        geocoder.geocode( { 'address': address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+
+                console.log(results[0]);
+                map.setCenter(results[0].geometry.location);
+                map.fitBounds(results[0].geometry.bounds);
+                var marker = new google.maps.Marker({
+                    draggable: true,
+                    map: map,
+                    position: results[0].geometry.location
+                });
+
+                google.maps.event.addListener(marker, "dragend", function(event) {
+                    console.log(marker.position);
+                });
+
+
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
             }
-        );
+        });
+
 
         var marker = new google.maps.Marker({
             position: latlng,
