@@ -1,7 +1,7 @@
 
 {#<div class="main-menu clearfix">#}
     {#{% set object = item.menu[0] %}#}
-    {#{% include 'UneakFlatSkinBundle:Block:NestedSortable/nested_sortable_item.html.twig' with {'title': object.label} %}#}
+    {#{% include 'UneakFlatSkinBundle:Block:NestedSortable/nested_sortable_item.html.twig' with {'title': object.item.label} %}#}
 {#</div>#}
 
 {% if item.menu | length > 1 %}
@@ -10,13 +10,13 @@
 
     {% for i in 1..item.menu | length -1 %}
         {% set object = item.menu[i] %}
-        {% set lvl_obj = object.lvl %}
+        {% set lvl_obj = object.item.lvl %}
         {% if lvl_cur < lvl_obj %}{% if loop.first %}<ul id="{{ item.uniqid }}" class="sortable ui-sortable mjs-nestedSortable-branch mjs-nestedSortable-expanded">{% else %}<ul>{% endif %}{% endif %}
         {% if lvl_cur >= lvl_obj %}</li>{% endif %}
         {% if lvl_cur > lvl_obj %}{% for i in lvl_obj..lvl_cur-1 %}</ul></li>{% endfor %}{% endif %}
-        <li class="mjs-nestedSortable-branch mjs-nestedSortable-expanded" id="menuItem_{{ object.id }}">
-        {% include 'UneakFlatSkinBundle:Block:NestedSortable/nested_sortable_item.html.twig' with {'title': object.label} %}
-        {% set lvl_cur = object.lvl %}
+        <li class="mjs-nestedSortable-branch mjs-nestedSortable-expanded" id="menuItem_{{ object.item.id }}">
+        {{ include('UneakFlatSkinBundle:Block:NestedSortable/nested_sortable_item.html.twig', object) }}
+        {% set lvl_cur = object.item.lvl %}
     {% endfor %}
     {% for i in lvl_cur..0 %}</li></ul>{% endfor %}
 {% else %}

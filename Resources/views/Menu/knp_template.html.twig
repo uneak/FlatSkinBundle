@@ -35,6 +35,17 @@
 	{% if item.hasChildren and options.depth is not sameas(0) and item.displayChildren %}
 		{% set listAttributes = listAttributes|merge({'class': listAttributes.class|default('')|trim}) %}
 
+        {% set parentTag = 'ul' %}
+        {% if options.parentTag is defined %}
+            {% set parentTag = options.parentTag %}
+        {% endif %}
+
+        {% set childrenTag = 'li' %}
+        {% if options.childrenTag is defined %}
+            {% set childrenTag = options.childrenTag %}
+        {% endif %}
+
+
 		{% set listClass = '' %}
 		{% if options.style is defined and options.style == 'tabs' %}
 			{% set listClass = 'nav-tabs' %}
@@ -69,9 +80,9 @@
 
 		{% set listAttributes = listAttributes|merge({'class': (listAttributes.class|default('') ~ ' ' ~ listClass)|trim}) %}
 
-		<ul{{ _self.attributes(listAttributes) }}>
+		<{{ parentTag }}{{ _self.attributes(listAttributes) }}>
 			{{ block('children') }}
-		</ul>
+		</{{ parentTag }}>
 	{% endif %}
 {% endblock %}
 
@@ -80,9 +91,9 @@
 	{% spaceless %}
 		{% if item.hasChildren and options.depth is not sameas(0) and ((item.extras.dropdown is not defined and item.displayChildren is sameas(true) or item.extras.dropdown is defined and item.extras.dropdown is sameas(true) and item.displayChildren is sameas(true))) %}
 			{% set listAttributes = listAttributes|merge({'class': (listAttributes.class|default('') ~ ' dropdown-menu')|trim}) %}
-			<ul{{ _self.attributes(listAttributes) }} id="DROPDOWNLIST">
+			<{{ parentTag }}{{ _self.attributes(listAttributes) }} id="DROPDOWNLIST">
 			{{ block('children') }}
-			</ul>
+			</{{ parentTag }}>
 		{% endif %}
 	{% endspaceless %}
 {% endblock dropdownList %}
@@ -157,7 +168,7 @@
 			{%- set attributes = attributes|merge({'class': classes|join(' ')}) %}
 		{%- endif %}
 	{# displaying the item #}
-		<li{{ _self.attributes(attributes) }}>
+		<{{ childrenTag }}{{ _self.attributes(attributes) }}>
 			{%- if attributes.divider is defined and attributes.divider is not empty %}
 			{%- elseif item.hasChildren and options.style is defined and options.style in ['tabs', 'justified-tabs', 'pills', 'justified-pills', 'navbar', 'navbar-right', 'navbar_justified'] and options.currentDepth is sameas(1) and ((item.extras.dropdown is not defined and item.displayChildren is sameas(true) or item.extras.dropdown is defined and item.extras.dropdown is sameas(true) and item.displayChildren is sameas(true))) %}
 				{{ block('dropdownElement') }}
@@ -182,7 +193,7 @@
 			{%- else %}
 				{{ block('list') }}
 			{%- endif %}
-		</li>
+		</{{ childrenTag }}>
 	{% endif %}
 {% endblock %}
 

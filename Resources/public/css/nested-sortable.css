@@ -23,8 +23,9 @@ ul.sortable ul {
     list-style-type: none;
 }
 
-
-
+.sortable .nav span {
+    padding-right: 5px;
+}
 
 .sortable li > div {
     background: #f9f9f9 !important;
@@ -48,9 +49,6 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
 .sortable .disclose, .sortable .edit {
     cursor: pointer;
     width: 20px;
-}
-
-.sortable .edit {
 }
 
 

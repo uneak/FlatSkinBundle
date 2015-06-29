@@ -67,6 +67,9 @@
 				$view->vars['empty_value'] = "";
 			}
 
+            if (isset($options['required'])) {
+                $view->vars['options']['allowClear'] = !$options['required'];
+            }
 
 			if (isset($view->vars['options']['tags'])) {
 

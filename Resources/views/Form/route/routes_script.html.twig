@@ -1,0 +1,23 @@
+<script type="text/javascript">
+	$(document).ready(function () {
+
+
+        var {{ item.vars.id }}_show = function(elem) {
+            {% for route in item.vars.routes %}
+                if (elem == '{{ route }}') {
+                    $('#{{ item.children[route].vars.id }}').closest('.form-group').show();
+                } else {
+                    $('#{{ item.children[route].vars.id }}').closest('.form-group').hide();
+                    $('#{{ item.children[route].vars.id }}').val("");
+                }
+            {% endfor %}
+        }
+
+        $('#{{ item.children.route.vars.id }}').on("change", function(e){
+            {{ item.vars.id }}_show($('#{{ item.children.route.vars.id }}').val());
+        });
+
+        {{ item.vars.id }}_show($('#{{ item.children.route.vars.id }}').val());
+
+	});
+</script>
