@@ -2,6 +2,7 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Component;
 
+	use Uneak\AssetsManagerBundle\Assets\AssetBuilder;
 	use Uneak\AssetsManagerBundle\Assets\Js\AssetInternalJs;
 
 	class MorrisLine extends Morris {
@@ -55,12 +56,16 @@
 
 		}
 
-		protected function _registerScript() {
-			$script = array();
-			$script_ = "$(function() { Morris.Line({{ item.jsArray | raw }}); });";
-			$script["script_morris_line"] = new AssetInternalJs($script_, null, array('item' => $this));
-			return $script;
+		public function buildAsset(AssetBuilder $builder, $parameters) {
+
+			$builder
+				->add("script_morris_line", new AssetInternalJs(), array(
+					"content"   => "$(function() { Morris.Line({{ item.jsArray | raw }}); });",
+					"parameters" => array('item' => $parameters)
+				));
 		}
+
+
 
 		public function addLine($id, $label, $color) {
 			$this->line[$id] = new MorrisLineLine($id, $label, $color);

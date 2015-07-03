@@ -1,3 +1,6 @@
+parameters:
+    routes: ~
+
 services:
 #    uneak_flat_skin.example:
 #        class: Uneak\FlatSkinBundle\Example

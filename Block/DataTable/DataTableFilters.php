@@ -4,7 +4,7 @@
 
 	use Uneak\AssetsManagerBundle\Assets\Js\AssetInternalJs;
 	use Uneak\BlocksManagerBundle\Blocks\Block;
-	use Uneak\BlocksManagerBundle\Blocks\ScriptFileJs;
+	use Uneak\AssetsManagerBundle\Assets\AssetBuilder;
 
 
 	class DataTableFilters extends Block {
@@ -19,10 +19,14 @@
 			$this->scriptTemplate = "UneakFlatSkinBundle:Block:DataTable/script_block_filters.html.twig";
 		}
 
-		public function _registerScript() {
-			$script = array();
-			$script["script_datatable_filter"] = new AssetInternalJs($this->scriptTemplate, array("script_datatable"), array('item' => $this));
-			return $script;
+		public function buildAsset(AssetBuilder $builder, $parameters) {
+
+			$builder
+				->add("script_datatable_filter", new AssetInternalJs(), array(
+					"template"   => $this->scriptTemplate,
+					"parameters" => array('item' => $parameters),
+					"dependencies" => array("script_datatable")
+				));
 		}
 
 		public function getScriptTemplate() {
