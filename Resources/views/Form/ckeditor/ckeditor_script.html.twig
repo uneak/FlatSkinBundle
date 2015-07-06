@@ -1,5 +1,13 @@
 <script type="text/javascript">
 	$(document).ready(function () {
-		CKEDITOR.replace('{{ item.vars.id }}', {{ item.vars.options | json_encode | raw }});
+
+
+//		CKEDITOR.plugins.addExternal( 'news', '/bundles/news/ckeditor/plugins/news/' );
+		CKEDITOR.plugins.addExternal( 'news', '{{ path('ckeditor_news_plugin') }}' );
+
+		{#editor_{{ item.vars.id }} = CKEDITOR.replace('{{ item.vars.id }}', {{ item.vars.options | json_encode | raw }});#}
+		editor_{{ item.vars.id }} = CKEDITOR.replace('{{ item.vars.id }}', {{ item.vars.options | json_encode | raw }});
+
+
 	});
 </script>

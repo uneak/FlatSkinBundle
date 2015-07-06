@@ -51,11 +51,22 @@
 				->add("ckeditor_js", new AssetExternalJs(), array(
 					"src" => "/vendor/ckeditor/ckeditor.js"
 				))
+
 				->add("script_ckeditor", new AssetInternalJs(), array(
 					"template" => "UneakFlatSkinBundle:Form:ckeditor/ckeditor_script.html.twig",
 					"parameters" => array('item' => $parameters)
-				));
+				))
 
+				->add("ckfinder_js", new AssetExternalJs(), array(
+					"src" => "/bundles/uneakckfinder/ckfinder.js",
+					"dependencies" => array("ckeditor_js")
+				))
+
+				->add("script_ckfinder", new AssetInternalJs(), array(
+					"template" => "UneakCKFinderBundle:Form:ckfinder/ckfinder_script.html.twig",
+					"parameters" => array('item' => $parameters),
+					"dependencies" => array("script_ckeditor"),
+				));
 		}
 
 		//		public function getTheme() {
