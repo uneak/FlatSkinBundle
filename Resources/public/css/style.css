@@ -5829,3 +5829,14 @@ ul.bc-collection li {
     padding: 20px;
     border-radius: 4px;
 }
+
+
+
+.profile-nav .user-heading.grey-bg {
+    background: #EEE;
+    color: #999;
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    padding: 30px;
+    text-align: left;
+}

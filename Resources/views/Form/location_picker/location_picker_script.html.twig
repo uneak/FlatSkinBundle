@@ -7,7 +7,9 @@
 
 			onchanged: function (currentLocation, radius, isMarkerDropped) {
 				var location = $(this).locationpicker('map').location;
-				$('#{{ item.vars.id }}').val(JSON.stringify(location));
+                var bounds = $(this).locationpicker('map').map.getBounds();
+
+				$('#{{ item.vars.id }}').val(JSON.stringify({location: location, bounds: bounds}));
 
 			},
 			oninitialized: function(component) {

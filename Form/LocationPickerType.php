@@ -33,14 +33,23 @@
 		public function buildView(FormView $view, FormInterface $form, array $options) {
 
 			$view->vars['options'] = $options['options'];
-
 			$value = json_decode($view->vars['value']);
-
 			if ($value) {
 				$view->vars['options']['location'] = array(
 					'latitude' => $value->latitude,
 					'longitude' => $value->longitude,
 				);
+                $view->vars['options']['bounds'] = array(
+                    'ne' => array(
+                        'latitude' => 16.226786025061,
+                        'longitude' => -61.56689453125,
+                    ),
+                    'sw' => array(
+                        'latitude' => 16.226786025061,
+                        'longitude' => -61.56689453125,
+                    ),
+                );
+
 			}
 
 
