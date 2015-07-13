@@ -6,8 +6,8 @@ parameters:
     uneak.flatskin.type.choice.select2.class: Uneak\FlatSkinBundle\Form\ChoiceSelect2Type
     uneak.flatskin.type.entity.select2.class: Uneak\FlatSkinBundle\Form\EntitySelect2Type
     uneak.flatskin.type.ckeditor.class: Uneak\FlatSkinBundle\Form\CKEditorType
-    uneak.flatskin.type.route.class: Uneak\FlatSkinBundle\Form\RouteType
-    uneak.flatskin.type.routes.class: Uneak\FlatSkinBundle\Form\RoutesType
+#    uneak.flatskin.type.route.class: Uneak\FlatSkinBundle\Form\RouteType
+#    uneak.flatskin.type.routes.class: Uneak\FlatSkinBundle\Form\RoutesType
 
 services:
 
@@ -47,16 +47,16 @@ services:
             - { name: form.type, alias: file_picker }
 
 
-    uneak.flatskin.type.routes:
-        class: %uneak.flatskin.type.routes.class%
-        arguments:
-            - %routes%
-        tags:
-            - { name: form.type, alias: routes }
+#    uneak.flatskin.type.routes:
+#        class: %uneak.flatskin.type.routes.class%
+#        arguments:
+#            - %routes%
+#        tags:
+#            - { name: form.type, alias: routes }
 
-    uneak.flatskin.type.route:
-        class: %uneak.flatskin.type.route.class%
-        arguments:
-            - @doctrine.orm.entity_manager
-        tags:
-            - { name: form.type, alias: route }
+#    uneak.flatskin.type.route:
+#        class: %uneak.flatskin.type.route.class%
+#        arguments:
+#            - @doctrine.orm.entity_manager
+#        tags:
+#            - { name: form.type, alias: route }

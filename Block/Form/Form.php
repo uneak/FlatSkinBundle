@@ -8,6 +8,7 @@
 	class Form extends Block {
 
 		protected $form;
+		protected $description;
 
 		public function __construct($form) {
 			parent::__construct();
@@ -29,6 +30,21 @@
 			$this->form = $form;
 			return $this;
 		}
+
+		/**
+		 * @return mixed
+		 */
+		public function getDescription() {
+			return $this->description;
+		}
+
+		/**
+		 * @param mixed $description
+		 */
+		public function setDescription($description) {
+			$this->description = $description;
+		}
+
 
 
 	}

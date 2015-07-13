@@ -5684,7 +5684,7 @@ a.guest-on i {
 .directory-info-row {
     display: inline-block;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 .social-links {
     display: inline-block;
@@ -5828,4 +5828,21 @@ ul.bc-collection li {
     margin-bottom: 20px;
     padding: 20px;
     border-radius: 4px;
+}
+
+
+
+.profile-nav .user-heading.grey-bg {
+    background: #EEE;
+    color: #999;
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+    padding: 30px;
+    text-align: left;
+}
+
+
+.profile-info .row {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
