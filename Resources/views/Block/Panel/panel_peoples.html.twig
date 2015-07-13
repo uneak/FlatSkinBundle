@@ -1,4 +1,5 @@
 <div class="directory-info-row">
+	<h3> {{ item.title | raw }}</h3>
 	{% set cmpt = 0 %}
 	{% for block in item.panels %}
 		{% if loop.first or loop.index0 is divisibleby(item.columns) %}
@@ -17,4 +18,8 @@
 			</div>
 		{% endif %}
 	{% endfor %}
+	{% for block in item.menus %}
+		{{ renderBlock(block) }}
+	{% endfor %}
+
 </div>
