@@ -97,14 +97,14 @@
 
 			$builder
 				->add("moment_js", new AssetExternalJs(), array(
-					"src" => "/vendor/moment/moment.js"
+					"src" => "vendor/moment/moment.js"
 				))
 				->add("bootstrap_datetimepicker_js", new AssetExternalJs(), array(
-					"src"          => "/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
+					"src"          => "vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js",
 					"dependencies" => array("bootstrap_datepicker_js")
 				))
 				->add("bootstrap_datetimepicker_css", new AssetExternalCss(), array(
-					"href" => "/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"
+					"href" => "vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css"
 				))
 				->add("script_datetimepicker", new AssetInternalJs(), array(
 					"template"   => "UneakFlatSkinBundle:Form:date_picker/date_picker_script.html.twig",
@@ -115,19 +115,19 @@
 
 				$builder
 					->add("moment_language_js", new AssetExternalJs(), array(
-						"src"          => "/vendor/moment/locale/" . $parameters->vars["options"]["locale"] . ".js",
+						"src"          => "vendor/moment/locale/" . $parameters->vars["options"]["locale"] . ".js",
 						"dependencies" => array("moment_js"),
 						"charset"      => "UTF-8"
 					))
 					->add("bootstrap_datepicker_js", new AssetExternalJs(), array(
-						"src"          => "/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js",
+						"src"          => "vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js",
 						"dependencies" => array("moment_language_js")
 					));
 
 			} else {
 
 				$builder->add("bootstrap_datepicker_js", new AssetExternalJs(), array(
-					"src"          => "/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js",
+					"src"          => "vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js",
 					"dependencies" => array("moment_js")
 				));
 

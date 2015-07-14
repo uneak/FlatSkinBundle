@@ -117,13 +117,13 @@
 
 			$builder
 				->add("select2_js", new AssetExternalJs(), array(
-					"src" => "/vendor/select2/select2.js"
+					"src" => "vendor/select2/select2.js"
 				))
 				->add("select2_css", new AssetExternalCss(), array(
-					"href" => "/vendor/select2/select2.css"
+					"href" => "vendor/select2/select2.css"
 				))
 				->add("select2_bootstrap_css", new AssetExternalCss(), array(
-					"href"         => "/vendor/select2-bootstrap-css/select2-bootstrap.css",
+					"href"         => "vendor/select2-bootstrap-css/select2-bootstrap.css",
 					"dependencies" => array("select2_css")
 				))
 				->add("script_select2", new AssetInternalJs(), array(
@@ -134,7 +134,7 @@
 			if (isset($parameters->vars["options"]["language"])) {
 
 				$builder->add("select2_language_js", new AssetExternalJs(), array(
-					"src"          => "/vendor/select2/select2_locale_" . $parameters->vars["options"]["language"] . ".js",
+					"src"          => "vendor/select2/select2_locale_" . $parameters->vars["options"]["language"] . ".js",
 					"dependencies" => array("select2_js"),
 					"charset"      => "UTF-8"
 				));

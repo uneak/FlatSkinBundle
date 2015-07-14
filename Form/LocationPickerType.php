@@ -83,7 +83,7 @@
 					"src" => "http://maps.google.com/maps/api/js?sensor=false&libraries=places"
 				))
 				->add("locationpicker_js", new AssetExternalJs(), array(
-					"src" => "/vendor/jquery-locationpicker-plugin/dist/locationpicker.jquery.js",
+					"src" => "vendor/jquery-locationpicker-plugin/dist/locationpicker.jquery.js",
 					"dependencies" => array("google_map_js")
 				))
 				->add("script_locationpicker", new AssetInternalJs(), array(

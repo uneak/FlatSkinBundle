@@ -28,21 +28,21 @@
 
 			$builder
 				->add("jquery_dataTables_js", new AssetExternalJs(), array(
-					"src" => "/bundles/uneakflatskin/assets/advanced-datatable/media/js/jquery.dataTables.js",
+					"src" => "bundles/uneakflatskin/assets/advanced-datatable/media/js/jquery.dataTables.js",
 				))
 				->add("dt_bootstrap_js", new AssetExternalJs(), array(
-					"src"          => "/bundles/uneakflatskin/assets/data-tables/DT_bootstrap.js",
+					"src"          => "bundles/uneakflatskin/assets/data-tables/DT_bootstrap.js",
 					"dependencies" => array("jquery_dataTables_js")
 				))
 				->add("dt_bootstrap_css", new AssetExternalCss(), array(
-					"href" => "/bundles/uneakflatskin/assets/data-tables/DT_bootstrap.css",
+					"href" => "bundles/uneakflatskin/assets/data-tables/DT_bootstrap.css",
 				))
 				->add("demo_table_css", new AssetExternalCss(), array(
-					"href"         => "/bundles/uneakflatskin/assets/advanced-datatable/media/css/demo_table.css",
+					"href"         => "bundles/uneakflatskin/assets/advanced-datatable/media/css/demo_table.css",
 					"dependencies" => array("dt_bootstrap_css")
 				))
 				->add("demo_page_css", new AssetExternalCss(), array(
-					"href"         => "/bundles/uneakflatskin/assets/advanced-datatable/media/css/demo_page.css",
+					"href"         => "bundles/uneakflatskin/assets/advanced-datatable/media/css/demo_page.css",
 					"dependencies" => array("demo_table_css")
 				))
 				->add("script_datatable", new AssetInternalJs(), array(

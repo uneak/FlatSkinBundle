@@ -49,7 +49,7 @@
 
 			$builder
 				->add("ckeditor_js", new AssetExternalJs(), array(
-					"src" => "/vendor/ckeditor/ckeditor.js"
+					"src" => "vendor/ckeditor/ckeditor.js"
 				))
 
 				->add("script_ckeditor", new AssetInternalJs(), array(

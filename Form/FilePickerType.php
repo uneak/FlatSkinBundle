@@ -55,21 +55,21 @@
 
 			$builder
 				->add("jquery_ui_widget_js", new AssetExternalJs(), array(
-					"src" => "/vendor/jquery-file-upload/js/vendor/jquery.ui.widget.js"
+					"src" => "vendor/jquery-file-upload/jsvendor/jquery.ui.widget.js"
 				))
 				->add("jquery_iframe_transport_js", new AssetExternalJs(), array(
-					"src" => "/vendor/jquery-file-upload/js/jquery.iframe-transport.js",
+					"src" => "vendor/jquery-file-upload/js/jquery.iframe-transport.js",
 					"dependencies" => array("jquery_ui_widget_js")
 				))
 				->add("jquery_fileupload_js", new AssetExternalJs(), array(
-					"src" => "/vendor/jquery-file-upload/js/jquery.fileupload.js",
+					"src" => "vendor/jquery-file-upload/js/jquery.fileupload.js",
 					"dependencies" => array("jquery_iframe_transport_js")
 				))
 				->add("jquery_fileupload_css", new AssetExternalCss(), array(
-					"href" => "/vendor/jquery-file-upload/css/jquery.fileupload.css"
+					"href" => "vendor/jquery-file-upload/css/jquery.fileupload.css"
 				))
 				->add("jquery_fileupload_ui_css", new AssetExternalCss(), array(
-					"href" => "/vendor/jquery-file-upload/css/jquery.fileupload-ui.css",
+					"href" => "vendor/jquery-file-upload/css/jquery.fileupload-ui.css",
 					"dependencies" => array("jquery_fileupload_css")
 				))
 				->add("script_filepicker", new AssetInternalJs(), array(

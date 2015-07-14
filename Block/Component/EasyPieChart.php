@@ -36,10 +36,10 @@
 
 			$builder
 				->add("easy_pie_chart_js", new AssetExternalJs(), array(
-					"src" => "/bundles/uneakflatskin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"
+					"src" => "bundles/uneakflatskin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"
 				))
 				->add("easy_pie_chart_css", new AssetExternalCss(), array(
-					"href"  => "/bundles/uneakflatskin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css",
+					"href"  => "bundles/uneakflatskin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css",
 					"media" => "screen"
 				))
 				->add("script_easy_pie_chart", new AssetInternalJs(), array(

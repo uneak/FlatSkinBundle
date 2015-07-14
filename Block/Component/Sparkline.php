@@ -39,7 +39,7 @@
 
 			$builder
 				->add("sparkline_js", new AssetExternalJs(), array(
-					"src" => "/bundles/uneakflatskin/js/jquery.sparkline.js"
+					"src" => "bundles/uneakflatskin/js/jquery.sparkline.js"
 				))
 				->add("script_sparkline", new AssetInternalJs(), array(
 					"src" => "$(function() { $('#{{ item.uniqid }}').sparkline({{ item.values | json_encode() }}, {{ item.jsArray | raw }}); });",

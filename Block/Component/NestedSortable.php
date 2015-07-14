@@ -23,20 +23,20 @@
 
 			$builder
                 ->add("jquery_ui_js", new AssetExternalJs(), array(
-                    "src" => "/vendor/jquery-ui/jquery-ui.js",
+                    "src" => "vendor/jquery-ui/jquery-ui.js",
                 ))
 
 				->add("jquery_sortable_js", new AssetExternalJs(), array(
-					"src" => "/vendor/nestedSortable/jquery.mjs.nestedSortable.js",
+					"src" => "vendor/nestedSortable/jquery.mjs.nestedSortable.js",
                     "dependencies" => array("jquery_ui_js")
 				))
 
                 ->add("jquery_ui_css", new AssetExternalCss(), array(
-                    "href" => "/vendor/jquery-ui/themes/smoothness/jquery-ui.css",
+                    "href" => "vendor/jquery-ui/themes/smoothness/jquery-ui.css",
                 ))
 
                 ->add("nested_sortable_css", new AssetExternalCss(), array(
-                    "href" => "/bundles/uneakflatskin/css/nested-sortable.css",
+                    "href" => "bundles/uneakflatskin/css/nested-sortable.css",
                 ))
 
                 ->add("script_jquery_sortable", new AssetInternalJs(), array(

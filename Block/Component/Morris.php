@@ -2,6 +2,7 @@
 
 	namespace Uneak\FlatSkinBundle\Block\Component;
 
+	use Uneak\AssetsManagerBundle\Assets\AssetBuilder;
 	use Uneak\BlocksManagerBundle\Blocks\Component;
 	use Uneak\AssetsManagerBundle\Assets\Css\AssetExternalCss;
 	use Uneak\AssetsManagerBundle\Assets\Js\AssetExternalJs;
@@ -27,14 +28,14 @@
 
 			$builder
 				->add("morris_js", new AssetExternalJs(), array(
-					"src" => "/bundles/uneakflatskin/assets/morris.js-0.4.3/morris.min.js"
+					"src" => "bundles/uneakflatskin/assets/morris.js-0.4.3/morris.min.js"
 				))
 				->add("raphael_js", new AssetExternalJs(), array(
-					"src" => "/bundles/uneakflatskin/assets/morris.js-0.4.3/raphael-min.js",
+					"src" => "bundles/uneakflatskin/assets/morris.js-0.4.3/raphael-min.js",
 					"dependencies" => array("morris_js")
 				))
 				->add("", new AssetExternalCss(), array(
-					"href" => "/bundles/uneakflatskin/assets/morris.js-0.4.3/morris.css"
+					"href" => "bundles/uneakflatskin/assets/morris.js-0.4.3/morris.css"
 				));
 
 		}
